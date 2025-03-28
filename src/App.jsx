@@ -4,10 +4,26 @@ import './App.css'
 function App() {
   const [step, setStep] = useState(1);
   const emailInputRef = useRef(null);
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+  const [showOverlay, setShowOverlay] = useState(false);
   
+  // Пример существующих адресов электронной почты
+  const existingEmails = ['test@example.com', 'user@example.com'];
+
   const handleNextClick = () => {
     if (emailInputRef.current && emailInputRef.current.value) {
-      setStep(2);
+      const enteredEmail = emailInputRef.current.value;
+      setEmail(enteredEmail); // Сохраняем введенную почту
+
+      // Проверяем, существует ли почта
+      if (existingEmails.includes(enteredEmail)) {
+        setStep(3); // Переход к авторизации
+      } else {
+        setStep(2); // Переход к регистрации
+      }
     }
   };
 
@@ -16,6 +32,32 @@ function App() {
       handleNextClick();
     }
   };
+
+  const handleRegisterClick = () => {
+    if (name && phone && password) {
+      console.log("Регистрация успешна, показываем overlay");
+      setShowOverlay(true);
+    }
+  };
+
+  const handleAuthorizeClick = () => {
+    console.log("Авторизация успешна");
+    // Здесь можно добавить логику для авторизации
+  };
+
+  const closeOverlay = () => {
+    setTimeout(() => {
+        setShowOverlay(false);
+    }, 500); // Задержка в 500 мс, чтобы соответствовать времени анимации
+  };
+
+  const Overlay = () => (
+    <div className={`overlay ${showOverlay ? 'show' : ''}`}>
+      <h2>Регистрация успешна!</h2>
+      <p>Добро пожаловать в ViewTrain!</p>
+      <button onClick={closeOverlay}>Закрыть</button>
+    </div>
+  );
 
   const EmailStep = () => {
     const [hasInput, setHasInput] = useState(false);
@@ -52,31 +94,83 @@ function App() {
     );
   };
 
-  const RegistrationStep = () => (
-    <>
-      <h1>Регистрация</h1>
-      <div className="registration-form">
-        <div className="input-field">
-          <input type="text" placeholder="Имя" />
+  const RegistrationStep = () => {
+    const isFormValid = name && phone && password;
+
+    return (
+      <>
+        <div className='registration'><h1>Регистрация</h1></div>
+        <div className="registration-form">
+          <div className='strokes'>
+            <div className="input-field">
+              <input 
+                type="text" 
+                placeholder="Имя" 
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="input-field">
+              <input 
+                type="tel" 
+                placeholder="Номер телефона" 
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            </div>
+            <div className="input-field">
+              <input 
+                type="password" 
+                placeholder="Пароль*" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="password-hint">
+              *Ваш пароль должен содержать символы верхнего и нижнего регистров, а так же цифры.
+            </div>
+          </div>
+          <div className={`register-button ${isFormValid ? 'active' : ''}`} onClick={handleRegisterClick}>
+            <span>Зарегистрироваться</span>
+          </div>
+          <div className="terms">
+            Регистрируясь, вы подтверждаете, что согласны с нашими <u>Условиями использования</u> и <u>Политикой конфиденциальности</u>.
+          </div>
         </div>
-        <div className="input-field">
-          <input type="tel" placeholder="Номер телефона" />
+      </>
+    );
+  };
+
+  const AuthorizationStep = () => {
+    return (
+      <>
+        <div className='authorization'><h1>Авторизация</h1></div>
+        <div className="authorization-form">
+          <div className='strokes'>
+            <div className="input-field">
+              <input 
+                type="email" 
+                placeholder="Электронная почта" 
+                value={email} // Используем сохраненную почту
+                readOnly // Делаем поле только для чтения
+              />
+            </div>
+            <div className="input-field">
+              <input 
+                type="password" 
+                placeholder="Пароль" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className={`authorize-button`} onClick={handleAuthorizeClick}>
+            <span>Войти</span>
+          </div>
         </div>
-        <div className="input-field">
-          <input type="password" placeholder="Пароль*" />
-        </div>
-        <div className="password-hint">
-          *Ваш пароль должен содержать символы верхнего и нижнего регистров, а так же цифры.
-        </div>
-        <div className="register-button">
-          <span>Зарегистрироваться</span>
-        </div>
-        <div className="terms">
-          Регистрируясь, вы подтверждаете, что согласны с нашими <u>Условиями использования</u> и <u>Политикой конфиденциальности</u>.
-        </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  };
 
   return (
     <>
@@ -115,8 +209,9 @@ function App() {
           </div>
         </div>
         <div className='authorization'>
-          {step === 1 ? <EmailStep /> : <RegistrationStep />}
+          {step === 1 ? <EmailStep /> : step === 2 ? <RegistrationStep /> : <AuthorizationStep />}
         </div>
+        {showOverlay && <Overlay />}
       </div>
     </>
   )
