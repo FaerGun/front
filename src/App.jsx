@@ -99,7 +99,10 @@ function App() {
     const [isFormValid, setIsFormValid] = useState(false);
     
     useEffect(() => {
-      setIsFormValid(!!(formData.name && formData.phone && formData.password));
+      const isValid = formData.name.trim() !== '' && 
+                     formData.phone.trim() !== '' && 
+                     formData.password.trim() !== '';
+      setIsFormValid(isValid);
     }, [formData]);
 
     const handleInputChange = (field) => (e) => {
@@ -107,6 +110,12 @@ function App() {
         ...prev,
         [field]: e.target.value
       }));
+    };
+
+    const handleKeyPress = (e) => {
+      if (e.key === 'Enter' && isFormValid) {
+        handleRegisterClick(formData);
+      }
     };
 
     return (
@@ -120,6 +129,7 @@ function App() {
                 placeholder="Имя" 
                 value={formData.name}
                 onChange={handleInputChange('name')}
+                onKeyPress={handleKeyPress}
                 id="name"
                 name="name"
                 autoComplete="off"
@@ -131,6 +141,7 @@ function App() {
                 placeholder="Номер телефона" 
                 value={formData.phone}
                 onChange={handleInputChange('phone')}
+                onKeyPress={handleKeyPress}
                 id="phone"
                 name="phone"
                 autoComplete="off"
@@ -142,6 +153,7 @@ function App() {
                 placeholder="Пароль*" 
                 value={formData.password}
                 onChange={handleInputChange('password')}
+                onKeyPress={handleKeyPress}
                 id="password"
                 name="password"
                 autoComplete="off"
@@ -151,7 +163,10 @@ function App() {
               *Ваш пароль должен содержать символы верхнего и нижнего регистров, а так же цифры.
             </div>
           </div>
-          <div className={`register-button ${isFormValid ? 'active' : ''}`} onClick={() => handleRegisterClick(formData)}>
+          <div 
+            className={`register-button ${isFormValid ? 'active' : ''}`} 
+            onClick={() => isFormValid && handleRegisterClick(formData)}
+          >
             <span>Зарегистрироваться</span>
           </div>
           <div className="terms">
@@ -170,7 +185,9 @@ function App() {
     const [isFormValid, setIsFormValid] = useState(false);
     
     useEffect(() => {
-      setIsFormValid(!!(formData.email && formData.password));
+      const isValid = formData.email.trim() !== '' && 
+                     formData.password.trim() !== '';
+      setIsFormValid(isValid);
     }, [formData]);
 
     const handleInputChange = (field) => (e) => {
@@ -178,6 +195,12 @@ function App() {
         ...prev,
         [field]: e.target.value
       }));
+    };
+
+    const handleKeyPress = (e) => {
+      if (e.key === 'Enter' && isFormValid) {
+        handleAuthorizeClick();
+      }
     };
 
     return (
@@ -191,6 +214,7 @@ function App() {
                 placeholder="Электронная почта" 
                 value={formData.email}
                 onChange={handleInputChange('email')}
+                onKeyPress={handleKeyPress}
                 id="auth-email"
                 name="auth-email"
                 autoComplete="off"
@@ -202,13 +226,17 @@ function App() {
                 placeholder="Пароль" 
                 value={formData.password}
                 onChange={handleInputChange('password')}
+                onKeyPress={handleKeyPress}
                 id="auth-password"
                 name="auth-password"
                 autoComplete="off"
               />
             </div>
           </div>
-          <div className={`authorize-button ${isFormValid ? 'active' : ''}`} onClick={handleAuthorizeClick}>
+          <div 
+            className={`authorize-button ${isFormValid ? 'active' : ''}`} 
+            onClick={() => isFormValid && handleAuthorizeClick()}
+          >
             <span>Войти</span>
           </div>
         </div>
