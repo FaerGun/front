@@ -53,7 +53,7 @@ border-radius: 30px;
 .container1 p{
   
     position: fixed;
-    width: 741px;
+    
     left: 100px;
     top: 476px;
     height: 58px;
@@ -95,7 +95,7 @@ z-index: 2;
 
 .container3 h1 {
   position: fixed;
-  width: 539px;
+  
   height: 116px;
   left: 714px;
   
@@ -257,7 +257,7 @@ color: #FFFFFF;
 
 position: fixed;
 width: 473px;
-height: 234px;
+
 left: 1387px;
 top: 50px;
 
@@ -473,19 +473,16 @@ color: #000000;
 
 .registration-form{
   position: fixed;
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
-gap: 30px;
-
-
-max-width: 473px;
-height: fit-content;    /* или auto - элемент "обнимает" содержимое */
-min-height: 420px;
-
-left: 1387px;
-top: calc(50% - 420px/2);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 30px;
+  max-width: 473px;
+  height: fit-content;
+  min-height: 420px;
+  left: 1387px;
+  top: 300px;
 }
 .registration-form .password-hint{
   /* *Ваш пароль должен содержать символы верхнего и нижнего регистров, а так же цифры. */
@@ -575,26 +572,32 @@ flex-grow: 0;
 .input-field {
   display: flex;
   align-items: center;
-  padding: 20px; /* Отступы внутри поля ввода */
-  border: 1px solid #ccc; /* Граница */
-  border-radius: 30px; /* Закругление углов */
-  background: #000000; /* Фон поля ввода */
-  color: #868686; /* Цвет текста */
-  font-family: 'Inter', sans-serif; /* Шрифт */
-  font-size: 20px; /* Размер шрифта */
-  line-height: 24px; /* Высота строки */
-  letter-spacing: -0.04em; /* Межбуквенный интервал */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  background: #000000;
+  color: #868686;
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+  width: 100%;
+  box-sizing: border-box;
 }
-.input-field input::placeholder {
-  color: #868686; /* Цвет плейсхолдера */
-}
+
 .input-field input {
-  flex: 1; /* Занимает все доступное пространство */
-  border: none; /* Убираем стандартную границу */
-  background: transparent; /* Прозрачный фон */
-  color: #868686; /* Цвет текста */
-  font-size: 20px; /* Размер шрифта */
-  outline: none; /* Убираем обводку при фокусе */
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 20px;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+.input-field input::placeholder {
+  color: #868686;
 }
 
 .overlay {

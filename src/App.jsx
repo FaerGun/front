@@ -1,13 +1,10 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useCallback, useEffect, memo } from 'react'
 import './App.css'
 
 function App() {
   const [step, setStep] = useState(1);
   const emailInputRef = useRef(null);
   const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
   const [showOverlay, setShowOverlay] = useState(false);
   
   // Пример существующих адресов электронной почты
@@ -33,22 +30,19 @@ function App() {
     }
   };
 
-  const handleRegisterClick = () => {
-    if (name && phone && password) {
-      console.log("Регистрация успешна, показываем overlay");
-      setShowOverlay(true);
-    }
+  const handleRegisterClick = (formData) => {
+    console.log("Регистрация успешна, показываем overlay");
+    setShowOverlay(true);
   };
 
   const handleAuthorizeClick = () => {
     console.log("Авторизация успешна");
-    // Здесь можно добавить логику для авторизации
   };
 
   const closeOverlay = () => {
     setTimeout(() => {
         setShowOverlay(false);
-    }, 500); // Задержка в 500 мс, чтобы соответствовать времени анимации
+    }, 500);
   };
 
   const Overlay = () => (
@@ -78,6 +72,8 @@ function App() {
               placeholder="Электронная почта" 
               onChange={handleInputChange}
               onKeyPress={handleKeyPress}
+              id="email"
+              name="email"
             />
           </div>
           <div 
@@ -95,7 +91,23 @@ function App() {
   };
 
   const RegistrationStep = () => {
-    const isFormValid = name && phone && password;
+    const [formData, setFormData] = useState({
+      name: '',
+      phone: '',
+      password: ''
+    });
+    const [isFormValid, setIsFormValid] = useState(false);
+    
+    useEffect(() => {
+      setIsFormValid(!!(formData.name && formData.phone && formData.password));
+    }, [formData]);
+
+    const handleInputChange = (field) => (e) => {
+      setFormData(prev => ({
+        ...prev,
+        [field]: e.target.value
+      }));
+    };
 
     return (
       <>
@@ -106,31 +118,40 @@ function App() {
               <input 
                 type="text" 
                 placeholder="Имя" 
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={formData.name}
+                onChange={handleInputChange('name')}
+                id="name"
+                name="name"
+                autoComplete="off"
               />
             </div>
             <div className="input-field">
               <input 
                 type="tel" 
                 placeholder="Номер телефона" 
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                value={formData.phone}
+                onChange={handleInputChange('phone')}
+                id="phone"
+                name="phone"
+                autoComplete="off"
               />
             </div>
             <div className="input-field">
               <input 
                 type="password" 
                 placeholder="Пароль*" 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={formData.password}
+                onChange={handleInputChange('password')}
+                id="password"
+                name="password"
+                autoComplete="off"
               />
             </div>
             <div className="password-hint">
               *Ваш пароль должен содержать символы верхнего и нижнего регистров, а так же цифры.
             </div>
           </div>
-          <div className={`register-button ${isFormValid ? 'active' : ''}`} onClick={handleRegisterClick}>
+          <div className={`register-button ${isFormValid ? 'active' : ''}`} onClick={() => handleRegisterClick(formData)}>
             <span>Зарегистрироваться</span>
           </div>
           <div className="terms">
@@ -142,6 +163,23 @@ function App() {
   };
 
   const AuthorizationStep = () => {
+    const [formData, setFormData] = useState({
+      email: '',
+      password: ''
+    });
+    const [isFormValid, setIsFormValid] = useState(false);
+    
+    useEffect(() => {
+      setIsFormValid(!!(formData.email && formData.password));
+    }, [formData]);
+
+    const handleInputChange = (field) => (e) => {
+      setFormData(prev => ({
+        ...prev,
+        [field]: e.target.value
+      }));
+    };
+
     return (
       <>
         <div className='authorization'><h1>Авторизация</h1></div>
@@ -151,20 +189,26 @@ function App() {
               <input 
                 type="email" 
                 placeholder="Электронная почта" 
-                value={email} // Используем сохраненную почту
-                readOnly // Делаем поле только для чтения
+                value={formData.email}
+                onChange={handleInputChange('email')}
+                id="auth-email"
+                name="auth-email"
+                autoComplete="off"
               />
             </div>
             <div className="input-field">
               <input 
                 type="password" 
                 placeholder="Пароль" 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={formData.password}
+                onChange={handleInputChange('password')}
+                id="auth-password"
+                name="auth-password"
+                autoComplete="off"
               />
             </div>
           </div>
-          <div className={`authorize-button`} onClick={handleAuthorizeClick}>
+          <div className={`authorize-button ${isFormValid ? 'active' : ''}`} onClick={handleAuthorizeClick}>
             <span>Войти</span>
           </div>
         </div>
