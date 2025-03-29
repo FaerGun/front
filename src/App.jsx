@@ -5,14 +5,16 @@ import photo from './assets/photo.png'
 import Onboarding1 from './pages/onboarding-1'
 import PhoneInput from './components/PhoneInput'
 import NameInput from './components/NameInput'
+import EmailInput from './components/EmailInput'
+import { authApi } from './api/auth'
 
 function App() {
   const [step, setStep] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
-  const emailInputRef = useRef(null);
   const [email, setEmail] = useState('');
   const [showOverlay, setShowOverlay] = useState(false);
   const [userName, setUserName] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   
   // Пример существующих адресов электронной почты
@@ -30,7 +32,8 @@ function App() {
   const handleNextClick = () => {
     if (emailInputRef.current && emailInputRef.current.value) {
       const enteredEmail = emailInputRef.current.value;
-      setEmail(enteredEmail); // Сохраняем введенную почту
+      setEmail(enteredEmail);
+      setError(''); // Очищаем ошибку при вводе
 
       // Проверяем, существует ли почта
       if (existingEmails.includes(enteredEmail)) {
@@ -47,16 +50,41 @@ function App() {
     }
   };
 
-  const handleRegisterClick = (formData) => {
-    console.log("Регистрация успешна, показываем overlay");
-    setUserName(formData.name);
-    setShowOverlay(true);
+  const handleRegisterClick = async (formData) => {
+    try {
+      setError(''); // Очищаем предыдущие ошибки
+      
+      // Отправляем данные на сервер
+      await authApi.register(
+        email, // email из состояния компонента
+        formData.password,
+        formData.name,
+        formData.phone
+      );
+      
+      // Если регистрация успешна, показываем overlay
+      setUserName(formData.name);
+      setShowOverlay(true);
+    } catch (error) {
+      console.error('Ошибка при регистрации:', error);
+      setError(error.message || 'Произошла ошибка при регистрации');
+    }
   };
 
-  const handleAuthorizeClick = (formData) => {
-    console.log("Авторизация успешна");
-    setUserName(formData.email.split('@')[0]); // Берем имя из email до @
-    setShowOverlay(true);
+  const handleAuthorizeClick = async (formData) => {
+    try {
+      setError(''); // Очищаем предыдущие ошибки
+      
+      // Отправляем данные на сервер
+      const response = await authApi.login(formData.email, formData.password);
+      
+      // Если авторизация успешна, показываем overlay
+      setUserName(formData.email.split('@')[0]); // Берем имя из email до @
+      setShowOverlay(true);
+    } catch (error) {
+      console.error('Ошибка при авторизации:', error);
+      setError(error.message || 'Произошла ошибка при авторизации');
+    }
   };
 
   const closeOverlay = () => {
@@ -83,9 +111,31 @@ function App() {
 
   const EmailStep = () => {
     const [hasInput, setHasInput] = useState(false);
+    const [isValid, setIsValid] = useState(false);
+    const [localEmail, setLocalEmail] = useState('');
     
-    const handleInputChange = (e) => {
-      setHasInput(e.target.value.length > 0);
+    const handleEmailChange = (value) => {
+      setLocalEmail(value);
+      setHasInput(value.length > 0);
+      // Регулярное выражение для проверки email на английском языке
+      const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+      setIsValid(emailRegex.test(value));
+      setError(''); // Очищаем ошибку при вводе
+    };
+    
+    const handleNextButtonClick = () => {
+      if (!isValid) {
+        setError('Введите корректный email на английском языке');
+        return;
+      }
+      setEmail(localEmail); // Устанавливаем email в родительском компоненте
+      
+      // Проверяем, существует ли почта
+      if (existingEmails.includes(localEmail)) {
+        setStep(3); // Переход к авторизации
+      } else {
+        setStep(2); // Переход к регистрации
+      }
     };
     
     return (
@@ -93,20 +143,21 @@ function App() {
         <h1>Тренируйся.<br/>Анализируй.<br/>Побеждай!</h1>
         <div className="programming-model"></div>
         <div className="frame-5">
+          {error && (
+            <div className="error-message">
+              {error}
+            </div>
+          )}
           <div className="email">
-            <input 
-              ref={emailInputRef}
-              type="email" 
-              placeholder="Электронная почта" 
-              onChange={handleInputChange}
-              onKeyPress={handleKeyPress}
-              id="email"
-              name="email"
+            <EmailInput 
+              value={localEmail}
+              onChange={handleEmailChange}
+              placeholder="Электронная почта"
             />
           </div>
           <div 
-            className={`button-next ${hasInput ? 'active' : ''}`}
-            onClick={handleNextClick}
+            className={`button-next ${isValid ? 'active' : ''}`}
+            onClick={handleNextButtonClick}
           >
             <span>Далее</span>
           </div>
@@ -138,6 +189,7 @@ function App() {
         ...prev,
         [field]: e.target.value
       }));
+      setError(''); // Очищаем ошибку при вводе
     };
 
     const handleKeyPress = (e) => {
@@ -150,6 +202,11 @@ function App() {
       <>
         <div className='registration'><h1>Регистрация</h1></div>
         <div className="registration-form">
+          {error && (
+            <div className="error-message">
+              {error}
+            </div>
+          )}
           <div className='strokes'>
             <div className="input-field">
               <NameInput
@@ -213,6 +270,7 @@ function App() {
         ...prev,
         [field]: e.target.value
       }));
+      setError(''); // Очищаем ошибку при вводе
     };
 
     const handleKeyPress = (e) => {
@@ -225,6 +283,11 @@ function App() {
       <>
         <div className='authorization'><h1>Авторизация</h1></div>
         <div className="authorization-form">
+          {error && (
+            <div className="error-message">
+              {error}
+            </div>
+          )}
           <div className='strokes'>
             <div className="input-field">
               <input 
