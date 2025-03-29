@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 import './App.css'
 import photo from './assets/photo.png'
 import Onboarding1 from './pages/onboarding-1'
+import PhoneInput from './components/PhoneInput'
+import NameInput from './components/NameInput'
 
 function App() {
   const [step, setStep] = useState(1);
@@ -150,27 +152,17 @@ function App() {
         <div className="registration-form">
           <div className='strokes'>
             <div className="input-field">
-              <input 
-                type="text" 
-                placeholder="Имя" 
+              <NameInput
                 value={formData.name}
-                onChange={handleInputChange('name')}
-                onKeyPress={handleKeyPress}
-                id="name"
-                name="name"
-                autoComplete="off"
+                onChange={(value) => setFormData(prev => ({ ...prev, name: value }))}
+                placeholder="Имя"
               />
             </div>
             <div className="input-field">
-              <input 
-                type="tel" 
-                placeholder="Номер телефона" 
+              <PhoneInput
                 value={formData.phone}
-                onChange={handleInputChange('phone')}
-                onKeyPress={handleKeyPress}
-                id="phone"
-                name="phone"
-                autoComplete="off"
+                onChange={(value) => setFormData(prev => ({ ...prev, phone: value }))}
+                placeholder="Номер телефона"
               />
             </div>
             <div className="input-field">
@@ -329,7 +321,15 @@ function App() {
               </div>
             </div>
             <div className='authorization'>
-              {step === 1 ? <EmailStep /> : step === 2 ? <RegistrationStep /> : <AuthorizationStep />}
+              <div data-active={step === 1}>
+                <EmailStep />
+              </div>
+              <div data-active={step === 2}>
+                <RegistrationStep />
+              </div>
+              <div data-active={step === 3}>
+                <AuthorizationStep />
+              </div>
             </div>
             {showOverlay && <Overlay isVisible={showOverlay} userName={userName} />}
           </div>
