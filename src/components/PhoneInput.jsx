@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 
 const PhoneInput = ({ value, onChange, placeholder = "Введите номер телефона" }) => {
+  const [error, setError] = useState('');
+
   const formatPhoneNumber = (input) => {
     // Удаляем все нецифровые символы
     const numbers = input.replace(/\D/g, '');
+    
+    // Проверяем длину номера
+    if (numbers.length > 11) {
+      setError('Номер телефона не может содержать больше 11 цифр');
+      return value; // Возвращаем предыдущее значение
+    }
     
     let formattedNumber = numbers;
     
@@ -12,7 +20,7 @@ const PhoneInput = ({ value, onChange, placeholder = "Введите номер 
       formattedNumber = '7' + numbers.slice(1);
     }
     
-    // Если введено 10 цифр без префикса, добавляем +7
+    // Если введено 10 цифр без префикса, добавляем 7
     if (formattedNumber.length === 10 && !formattedNumber.startsWith('7')) {
       formattedNumber = '7' + formattedNumber;
     }
@@ -35,6 +43,13 @@ const PhoneInput = ({ value, onChange, placeholder = "Введите номер 
         formattedNumber = formattedNumber.slice(0, 13) + '-' + formattedNumber.slice(13);
       }
     }
+
+    // Очищаем ошибку если номер валидный
+    if (formattedNumber.replace(/\D/g, '').length >= 11) {
+      setError('');
+    } else if (formattedNumber.length > 0) {
+      setError('Введите полный номер телефона');
+    }
     
     return formattedNumber;
   };
@@ -46,14 +61,17 @@ const PhoneInput = ({ value, onChange, placeholder = "Введите номер 
   };
 
   return (
-    <input
-      type="tel"
-      value={value}
-      onChange={handleChange}
-      placeholder={placeholder}
-      className="phone-input"
-      maxLength="18"
-    />
+    <div className="phone-input-container">
+      <input
+        type="tel"
+        value={value}
+        onChange={handleChange}
+        placeholder={placeholder}
+        className={`phone-input ${error ? 'error' : ''}`}
+        maxLength="18"
+      />
+      {error && <div className="input-error">{error}</div>}
+    </div>
   );
 };
 
