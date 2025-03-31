@@ -46,12 +46,14 @@ const Onboarding1 = ({ onNext }) => {
 
   const handleFinalNext = () => {
     if (selectedDirections.length > 0) {
-      setShowChat(true);
+      setShowSecondStep(false);
       setShowElements(false);
-      // Показываем чат с задержкой
       setTimeout(() => {
-        setShowElements(true);
-      }, 500);
+        setShowChat(true);
+        setTimeout(() => {
+          setShowElements(true);
+        }, 100);
+      }, 300);
     }
   };
 
@@ -73,6 +75,7 @@ const Onboarding1 = ({ onNext }) => {
           </svg>
         </div>
         <div className={`chat-container ${showElements ? 'show' : ''}`}>
+          <h1 className={`chat-header ${showElements ? 'show' : ''}`}>Чат с ассистентом</h1>
           <Chat />
         </div>
       </div>

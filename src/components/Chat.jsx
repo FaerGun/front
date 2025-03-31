@@ -1,64 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css';
 
 const Chat = () => {
-  const [messages, setMessages] = useState([
-    {
-      id: 1,
-      text: "Привет! Я помогу вам выбрать подходящие курсы и ресурсы для обучения. Расскажите, какой у вас опыт в программировании?",
-      isBot: true
-    }
-  ]);
+  const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
+
+  useEffect(() => {
+    document.body.classList.add('chat-open');
+    return () => {
+      document.body.classList.remove('chat-open');
+    };
+  }, []);
 
   const handleSendMessage = (e) => {
     e.preventDefault();
     if (!inputMessage.trim()) return;
 
-    const newMessage = {
-      id: messages.length + 1,
-      text: inputMessage,
-      isBot: false
-    };
-
-    setMessages([...messages, newMessage]);
+    setMessages(prev => [...prev, { text: inputMessage, isBot: false }]);
     setInputMessage('');
-
-    // Имитация ответа бота
-    setTimeout(() => {
-      const botResponse = {
-        id: messages.length + 2,
-        text: "Спасибо за информацию! Я подберу для вас подходящие курсы и ресурсы.",
-        isBot: true
-      };
-      setMessages(prev => [...prev, botResponse]);
-    }, 1000);
   };
 
   return (
     <div className="chat-container">
-      <div className="chat-messages">
-        {messages.map(message => (
-          <div 
-            key={message.id} 
-            className={`message ${message.isBot ? 'bot' : 'user'}`}
-          >
-            {message.text}
-          </div>
-        ))}
+      <div className="chat-main">
+        <div className="chat-header"></div>
+        <h1 className="chat-title">Собеседование backend-разработчика</h1>
+        <div className="chat-messages">
+          {messages.map((message, index) => (
+            <div key={index} className={`message ${message.isBot ? 'bot' : 'user'}`}>
+              {message.text}
+            </div>
+          ))}
+        </div>
+        <form onSubmit={handleSendMessage} className="chat-input-container">
+          <input
+            type="text"
+            value={inputMessage}
+            onChange={(e) => setInputMessage(e.target.value)}
+            placeholder="Напишите что-нибудь..."
+            className="chat-input"
+          />
+          <button type="submit" className="send-button"></button>
+        </form>
       </div>
-      <form className="chat-input-form" onSubmit={handleSendMessage}>
-        <input
-          type="text"
-          value={inputMessage}
-          onChange={(e) => setInputMessage(e.target.value)}
-          placeholder="Введите ваше сообщение..."
-          className="chat-input"
-        />
-        <button type="submit" className="chat-send-button">
-          Отправить
-        </button>
-      </form>
     </div>
   );
 };
