@@ -886,3 +886,162 @@ flex-grow: 0;
   flex-direction: column;
   width: 100%;
 }
+
+.onboarding-1{
+  width: 1920px;
+  height: 1080px;
+  top: 1225px;
+  left: 4px;
+background-color: #000000;
+}
+.onboarding-content{
+  position: fixed;
+width: 1880px;
+height: 974px;
+top: 86px;
+left: 20px;
+border-radius: 30px;
+background-color: #FFFFFF;
+
+}
+.onboarding-1 .logo{
+  width: 191px;
+  height: 26px;
+  top: 30px;
+  left: 60px;
+  background-color: #000000;
+}
+
+.onboarding-content h1{
+  position: absolute;
+width: 648px;
+height: 58px;
+top: 30px;
+left: 60px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 48px;
+line-height: 121%;
+letter-spacing: -4%;
+color: #000000;
+}
+.text-about-languages{
+  position: absolute;
+width: 738px;
+height: 351px;
+top: 150px;
+left: 60px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 32px;
+line-height: 121%;
+letter-spacing: -4%;
+color: #000000;
+}
+
+.languages-grid-1{
+  position: absolute;
+  width: 435px;
+  height: 183px;
+  top: 30px;
+  left: 970px;
+  border-radius: 30px;
+  background-color: #000000;
+}
+
+.languages-grid-2{
+  position: absolute;
+  width: 435px;
+  height: 183px;
+  top: 30px;
+  left: 1425px;
+  border-radius: 30px;
+  background-color: #000000;
+}
+.languages-grid-3{
+  position: absolute;
+  width: 435px;
+  height: 183px;
+  top: 240px;
+  left: 970px;
+  border-radius: 30px;
+  background-color: #000000;
+}
+.languages-grid-4{
+  position: absolute;
+  width: 435px;
+  height: 183px;
+  top: 240px;
+  left: 1425px;
+  border-radius: 30px;
+  background-color: #000000;
+}
+.languages-grid-5{
+  position: absolute;
+  width: 435px;
+  height: 183px;
+  top: 450px;
+  left: 970px;
+  border-radius: 30px;
+  background-color: #000000;
+}
+.languages-grid-6{
+  position: absolute;
+  width: 435px;
+  height: 183px;
+  top: 450px;
+  left: 1425px;
+  border-radius: 30px;
+  background-color: #000000;
+}
+.languages-grid-7{
+  position: absolute;
+  width: 435px;
+  height: 183px;
+  top: 660px;
+  border-radius: 30px;
+  background-color: #000000;
+  left: 970px;
+}
+.languages-grid-8{
+  position: absolute;
+  width: 435px;
+  height: 183px;
+  top: 660px;
+  left: 1425px;
+  border-radius: 30px;
+  background-color: #000000;
+}
+.next-button{
+  position: absolute;
+  width: 890px;
+height: 83px;
+top: 860px;
+left: 970px;
+border-radius: 30px;
+padding-top: 20px;
+padding-right: 197px;
+padding-bottom: 20px;
+padding-left: 197px;
+gap: 10px;
+background-color: #7A7A7A;
+}
+.next-button.active {
+  background: #B3DB32; /* Зеленый цвет для активной кнопки */
+}
+.next-button span{
+  width: 96px;
+  height: 39px;
+  font-family: Inter;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: -4%;
+  color: #000000;
+}
+
+
