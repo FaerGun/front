@@ -1467,29 +1467,45 @@ flex-grow: 0;
 
  .dashboard {
   position: fixed;
-  width: 0px;
-  height: 26px;
+  width: 106px;
+  height: 38px;
   left: 500px;
   top: 30px;
   background: #B3DB32;
-  border-radius: 25px;
+  border-radius: 19px;
   z-index: 2;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dashboard svg {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.chat {
+  position: fixed;
+  width: 150px;
+  height: 38px;
+  left: 620px;
+  top: 30px;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 19px;
+  z-index: 2;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.chat svg {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .onboarding-1 .dashboard-show {
   opacity: 1;
   transform: translateY(0);
-}
-
-.chat {
-  position: fixed;
-  width: 0px;
-  height: 26px;
-  left: 620px;
-  top: 30px;
-  background: #B3DB32;
-  border-radius: 25px;
-  z-index: 2;
 }
 
 .onboarding-1 .chat {
