@@ -1463,3 +1463,36 @@ order: 1;
 align-self: stretch;
 flex-grow: 0;
 }
+
+
+ .dashboard {
+  position: fixed;
+  width: 0px;
+  height: 26px;
+  left: 500px;
+  top: 30px;
+  background: #B3DB32;
+  border-radius: 25px;
+  z-index: 2;
+}
+
+.onboarding-1 .dashboard-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.chat {
+  position: fixed;
+  width: 0px;
+  height: 26px;
+  left: 620px;
+  top: 30px;
+  background: #B3DB32;
+  border-radius: 25px;
+  z-index: 2;
+}
+
+.onboarding-1 .chat {
+  opacity: 1;
+  transform: translateY(0);
+}
