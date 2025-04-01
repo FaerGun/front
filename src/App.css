@@ -1102,6 +1102,7 @@ body.chat-open {
 }
 
 .chat-main {
+  top: 30px;
   position: relative;
   width: 1840px;
   height: 974px;
@@ -1111,14 +1112,12 @@ body.chat-open {
   flex-direction: column;
 }
 
-
-
 .chat-title {
   position: absolute;
   width: 500px;
   height: 29px;
   left: 545px;
-  top: 15px;
+  top: 30px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
@@ -1127,6 +1126,11 @@ body.chat-open {
   letter-spacing: -0.04em;
   color: #000000;
   z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.chat-title.moved {
+  left: 70px;
 }
 
 .chat-messages {
@@ -1141,10 +1145,18 @@ body.chat-open {
   flex-direction: column;
   padding: 20px;
   overflow-y: auto;
+  transition: all 0.3s ease;
+}
+
+.chat-messages.expanded {
+  left: 20px;
+  width: 1765px;
 }
 
 .message {
+  position: relative;
   width: fit-content;
+  top: 30px;
   min-width: 100px;
   max-width: 500px;
   padding: 20px;
@@ -1180,6 +1192,12 @@ body.chat-open {
   align-items: center;
   padding: 0 20px;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.chat-input-container.expanded {
+  left: 20px;
+  width: 1765px;
 }
 
 .chat-input {
@@ -1255,26 +1273,55 @@ body.chat-open {
 }
 
 .chat-list {
-/* Rectangle 12 */
-
-position: absolute;
-width: 460px;
-height: 934px;
-left: 20px;
-top: 20px;
-
-background: #FFFFFF;
-border-radius: 30px;
+  position: absolute;
+  width: 460px;
+  height: 934px;
+  left: 20px;
+  top: 20px;
+  background: #FFFFFF;
+  border-radius: 30px;
+  transition: transform 0.3s ease;
+  z-index: 100;
 }
-.chat-list-icon1{
-  /* Union */
 
-position: absolute;
-width: 30px;
-height: 25px;
-left: 90px;
-top: 136px;
+.chat-list.hidden {
+  transform: translateX(-500px);
+  opacity: 0;
+  pointer-events: none;
+}
 
-background: #000000;
+.chat-list-icon1 {
+  position: absolute;
+  width: 30px;
+  height: 25px;
+  left: 40px;
+  top: 40px;
+  cursor: pointer;
+  z-index: 101;
+  transition: transform 0.3s ease;
+}
 
+.chat-list-icon1.rotated {
+  transform: rotate(180deg);
+}
+.chat-list-icon2 {
+  position: absolute;
+  width: 30px;
+  height: 25px;
+  left: 350px;
+  top: 20px;
+  cursor: pointer;
+  z-index: 101;
+  transition: transform 0.3s ease;
+}
+
+.chat-list-icon3 {
+  position: absolute;
+  width: 30px;
+  height: 25px;
+  left: 400px;
+  top: 20px;
+  cursor: pointer;
+  z-index: 101;
+  transition: transform 0.3s ease;
 }
