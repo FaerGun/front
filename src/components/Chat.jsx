@@ -30,6 +30,22 @@ const Chat = () => {
     <div className="chat-container">
       <div className="chat-main">
         <div className={`chat-list ${isListHidden ? 'hidden' : ''}`}>
+        <div className='chat-active'>
+          <div className='chat-active-title'>
+          Собеседование backend-разработчика.
+          </div>
+          <div className='chat-active-description'>
+            сегодня, 16:04 · 2 сообщения
+          </div>
+        </div>
+        <div className='chat-inactive'>
+          <div className='chat-inactive-title'>
+          Тренировка вопросов связанных с прошлым местом работы
+          </div>
+          <div className='chat-inactive-description'>
+          вчера, 17:07 · 26 сообщений
+          </div>
+        </div>
           <svg className="chat-list-icon2" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" clipRule="evenodd" d="M19.8173 11.258C19.8173 15.7914 16.0802 19.516 11.4086 19.516C6.73709 19.516 3 15.7914 3 11.258C3 6.72463 6.73709 3 11.4086 3C16.0802 3 19.8173 6.72463 19.8173 11.258ZM17.8232 19.3371C16.0555 20.7022 13.8285 21.516 11.4086 21.516C5.66011 21.516 1 16.9234 1 11.258C1 5.59267 5.66011 1 11.4086 1C17.1572 1 21.8173 5.59267 21.8173 11.258C21.8173 13.8234 20.8618 16.1687 19.2824 17.9674L25.4114 24.0077C25.8048 24.3954 25.8048 25.0239 25.4114 25.4116C25.018 25.7992 24.3803 25.7992 23.9869 25.4116L17.8232 19.3371Z" fill="black"/>
           </svg>
