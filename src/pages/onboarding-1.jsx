@@ -75,7 +75,7 @@ const Onboarding1 = ({ onNext }) => {
           </svg>
         </div>
         <div className={`chat-container ${showElements ? 'show' : ''}`}>
-          <h1 className={`chat-header ${showElements ? 'show' : ''}`}>Чат с ассистентом</h1>
+          
           <Chat />
         </div>
       </div>
