@@ -1512,3 +1512,23 @@ flex-grow: 0;
   opacity: 1;
   transform: translateY(0);
 }
+.profile{
+  /* Ellipse 1 */
+
+position: fixed;
+width: 40px;
+height: 40px;
+left: 1815px;
+top: 23px;
+z-index: 2;
+}
+.profile svg{
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+
+}
+.onboarding-1 .profile{
+  opacity: 1;
+  transform: translateY(0);
+}
