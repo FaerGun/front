@@ -67,7 +67,21 @@ function App() {
       setShowOverlay(true);
     } catch (error) {
       console.error('Ошибка при регистрации:', error);
-      setError(error.message || 'Произошла ошибка при регистрации');
+      
+      // Убеждаемся, что сообщение об ошибке - строка
+      const errorMessage = typeof error.message === 'string' 
+        ? error.message 
+        : JSON.stringify(error.message);
+      
+      // Проверяем статус ошибки
+      if (error.status === 409 || errorMessage.includes("Email already registered")) {
+        // Если почта уже зарегистрирована, переходим к авторизации
+        setEmail(email); // Убеждаемся, что email установлен
+        setStep(3); // Переход к авторизации
+        setError('Этот email уже зарегистрирован. Пожалуйста, войдите в систему.');
+      } else {
+        setError(errorMessage || 'Произошла ошибка при регистрации');
+      }
     }
   };
 
@@ -83,7 +97,18 @@ function App() {
       setShowOverlay(true);
     } catch (error) {
       console.error('Ошибка при авторизации:', error);
-      setError(error.message || 'Произошла ошибка при авторизации');
+      
+      // Убеждаемся, что сообщение об ошибке - строка
+      const errorMessage = typeof error.message === 'string' 
+        ? error.message 
+        : JSON.stringify(error.message);
+      
+      // Проверяем статус ошибки
+      if (error.status === 401) {
+        setError('Неверный email или пароль');
+      } else {
+        setError(errorMessage || 'Произошла ошибка при авторизации');
+      }
     }
   };
 
@@ -129,13 +154,7 @@ function App() {
         return;
       }
       setEmail(localEmail); // Устанавливаем email в родительском компоненте
-      
-      // Проверяем, существует ли почта
-      if (existingEmails.includes(localEmail)) {
-        setStep(3); // Переход к авторизации
-      } else {
-        setStep(2); // Переход к регистрации
-      }
+      setStep(2); // Всегда переходим к регистрации сначала
     };
     
     return (
@@ -254,7 +273,7 @@ function App() {
 
   const AuthorizationStep = () => {
     const [formData, setFormData] = useState({
-      email: '',
+      email: email,
       password: ''
     });
     const [isFormValid, setIsFormValid] = useState(false);
@@ -264,6 +283,13 @@ function App() {
                      formData.password.trim() !== '';
       setIsFormValid(isValid);
     }, [formData]);
+
+    useEffect(() => {
+      setFormData(prev => ({
+        ...prev,
+        email: email
+      }));
+    }, [email]);
 
     const handleInputChange = (field) => (e) => {
       setFormData(prev => ({
@@ -281,7 +307,7 @@ function App() {
 
     return (
       <>
-        <div className='authorization'><h1>Авторизация</h1></div>
+        <div className='authorization1'><h1>Авторизация</h1></div>
         <div className="authorization-form">
           {error && (
             <div className="error-message">

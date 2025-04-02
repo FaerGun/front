@@ -330,30 +330,30 @@ overflow: hidden;
 }
 
 .authorization h1 {
-  position: relative;
-  width: 473px;
-  margin-bottom: 40px;
+  
+  right: 100px;
+  
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
-  font-size: 64px;
-  line-height: 121%;
-  letter-spacing: -4%;
+  font-size: 48px;
+  line-height: 58px;
+  letter-spacing: -0.04em;
   color: #000000;
-  z-index: 2;
+  margin: 0;
 }
 
 .authorization-form {
-  position: fixed;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  gap: 20px;
+  gap: 30px;
   width: 473px;
-  height: 193px;
-  left: 1387px;
-  top: 827px;
+  height: auto;
+  min-height: 420px;
+  top:250px;
 }
 
 .email {
@@ -579,6 +579,39 @@ flex-grow: 0;
 
 .register-button.active {
   background: #B3DB32; /* Зеленый цвет для активной кнопки */
+}
+
+.authorize-button.active {
+  background: #B3DB32; /* Зеленый цвет для активной кнопки */
+}
+.authorize-button {
+  display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Уберите фиксированные отступы, если они не нужны */
+    
+     cursor: pointer;
+    
+    background: #A3A3A3;
+    border-radius: 30px;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    color: #000000;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: -0.04em;
+    color: #000000;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
 
 .strokes {
