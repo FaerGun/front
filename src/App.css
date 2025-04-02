@@ -889,8 +889,8 @@ flex-grow: 0;
 
 .onboarding-1 {
   width: 1920px;
-  height: 1080px;
-  top: 1225px;
+  height: 1200px;
+  position: fixed;
   left: 4px;
   background-color: #000000;
   position: relative;

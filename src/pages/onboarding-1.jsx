@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { languagesApi } from '../api/languages';
 import '../App.css';
 import Chat from '../components/Chat';
 
-const Onboarding1 = ({ onNext }) => {
+const Onboarding1 = () => {
+  const navigate = useNavigate();
   const [selectedLanguages, setSelectedLanguages] = useState([]);
   const [selectedDirections, setSelectedDirections] = useState([]);
   const [showSecondStep, setShowSecondStep] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const [showElements, setShowElements] = useState(false);
+  const [languages, setLanguages] = useState([]);
 
   useEffect(() => {
     // Показываем элементы с небольшой задержкой после монтирования
