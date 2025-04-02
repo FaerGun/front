@@ -61,6 +61,10 @@ const Onboarding1 = () => {
     }
   };
 
+  const handleDashboardClick = () => {
+    navigate('/dashboard');
+  };
+
   if (showChat) {
     return (
       <div className="onboarding-1">
@@ -78,7 +82,7 @@ const Onboarding1 = () => {
             <path fillRule="evenodd" clipRule="evenodd" d="M163.652 16.4667L154.536 6.93333V26L163.652 16.4667ZM172.768 16.4667L163.652 6.93333V16.4667V26L172.768 16.4667ZM181.884 16.4667L172.768 6.93333V16.4667V26L181.884 16.4667ZM181.884 16.4667V6.93333L191 16.4667L181.884 26V16.4667Z" fill="#B4DB32"/>
           </svg>
         </div>
-        <div className={`dashboard ${showElements ? 'show' : ''}`}>
+        <div className={`dashboard ${showElements ? 'show' : ''}`} onClick={handleDashboardClick} style={{ cursor: 'pointer' }}>
           <svg width="106" height="38" viewBox="0 0 106 38" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="106" height="38" rx="19" fill="#B3DB32"/>
           <path d="M14.6464 18.6464C14.4512 18.8417 14.4512 19.1583 14.6464 19.3536L17.8284 22.5355C18.0237 22.7308 18.3403 22.7308 18.5355 22.5355C18.7308 22.3403 18.7308 22.0237 18.5355 21.8284L15.7071 19L18.5355 16.1716C18.7308 15.9763 18.7308 15.6597 18.5355 15.4645C18.3403 15.2692 18.0237 15.2692 17.8284 15.4645L14.6464 18.6464ZM25 18.5H15V19.5H25V18.5Z" fill="black"/>

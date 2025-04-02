@@ -1532,3 +1532,79 @@ z-index: 2;
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Dashboard styles */
+.dashboard-container {
+  min-height: 100vh;
+  background-color: #0A0A0A;
+  color: white;
+  padding: 2rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.dashboard-card {
+  background-color: #1A1A1A;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.dashboard-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.pie-chart-container {
+  width: 16rem;
+  height: 16rem;
+  margin: 0 auto;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.legend-color {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+}
+
+.progress-container {
+  margin-bottom: 1rem;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 0.5rem;
+  background-color: #2A2A2A;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+.progress-fill-success {
+  background-color: #B3DB32;
+}
+
+.progress-fill-warning {
+  background-color: #FF5252;
+}
