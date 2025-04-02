@@ -4,7 +4,7 @@ import '../App.css';
 const Chat = () => {
   // Отдельные массивы сообщений для каждого чата
   const [messagesChat1, setMessagesChat1] = useState([
-    
+   
   ]);
   const [messagesChat2, setMessagesChat2] = useState([
     
@@ -21,11 +21,47 @@ const Chat = () => {
     };
   }, []);
 
+  const formatMessageTime = (timestamp) => {
+    const messageDate = new Date(timestamp);
+    const now = new Date();
+    const diffInHours = Math.abs(now - messageDate) / 36e5;
+    
+    if (diffInHours < 24) {
+      return `сегодня, ${messageDate.toLocaleTimeString('ru-RU', {
+        hour: '2-digit',
+        minute: '2-digit'
+      })}`;
+    } else if (diffInHours < 48) {
+      return `вчера, ${messageDate.toLocaleTimeString('ru-RU', {
+        hour: '2-digit',
+        minute: '2-digit'
+      })}`;
+    } else {
+      return messageDate.toLocaleDateString('ru-RU', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    }
+  };
+
+  const getLastMessageTime = (messages) => {
+    if (messages.length === 0) return '';
+    const lastMessage = messages[messages.length - 1];
+    return formatMessageTime(lastMessage.timestamp);
+  };
+
   const handleSendMessage = (e) => {
     e.preventDefault();
     if (!inputMessage.trim()) return;
 
-    const newMessage = { text: inputMessage, isBot: false };
+    const newMessage = { 
+      text: inputMessage, 
+      isBot: false,
+      timestamp: new Date()
+    };
     
     // Добавляем сообщение в активный чат
     if (activeChat === 1) {
@@ -68,7 +104,7 @@ const Chat = () => {
               Собеседование backend-разработчика.
             </div>
             <div className={`chat-${activeChat === 1 ? 'active' : 'inactive'}-description`}>
-              сегодня, 16:04 · {messagesChat1.length} сообщения
+              {getLastMessageTime(messagesChat1)} · {messagesChat1.length} сообщения
             </div>
           </div>
           <div 
@@ -80,7 +116,7 @@ const Chat = () => {
               Тренировка вопросов связанных с прошлым местом работы
             </div>
             <div className={`chat-${activeChat === 2 ? 'active' : 'inactive'}-description`}>
-              вчера, 17:07 · {messagesChat2.length} сообщений
+              {getLastMessageTime(messagesChat2)} · {messagesChat2.length} сообщений
             </div>
           </div>
           <svg className="chat-list-icon2" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
