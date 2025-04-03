@@ -31,7 +31,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /path/to/your/project/on/server
+            cd /home/n1x9s/front
             git pull origin rollback-directions
             npm ci
             npm run build
