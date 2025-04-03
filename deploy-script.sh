@@ -4,7 +4,7 @@
 # Разместите этот скрипт на сервере
 
 # Перейти в директорию проекта
-cd /path/to/your/project/on/server
+cd /home/n1x9s/front
 
 # Сохранить текущую ветку
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
