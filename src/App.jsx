@@ -17,7 +17,7 @@ function App() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   
-  // Пример существующих адресов электронной почты
+  // Пример существующих адресов электронной почты 
   const existingEmails = ['test@example.com', 'user@example.com'];
 
   useEffect(() => {
