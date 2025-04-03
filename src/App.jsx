@@ -24,7 +24,7 @@ function App() {
     // Имитация загрузки
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // Загрузка длится 2 секунды
+    }, 2000); // Загрузка длится 2 секунды 
 
     return () => clearTimeout(timer);
   }, []);
