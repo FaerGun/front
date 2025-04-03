@@ -1,8 +1,8 @@
-const API_BASE_URL = '/api/v1';
+import { API_CONFIG } from './config';
 
 class ApiClient {
   constructor() {
-    this.baseUrl = API_BASE_URL;
+    this.baseUrl = API_CONFIG.BASE_URL;
   }
 
   async request(endpoint, options = {}) {
@@ -24,15 +24,37 @@ class ApiClient {
         headers,
       });
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+      let data;
+      try {
+        data = await response.json();
+      } catch (e) {
+        data = { detail: 'Ошибка при обработке ответа сервера' };
       }
 
-      return await response.json();
+      if (!response.ok) {
+        // Обработка ошибок FastAPI
+        const error = new Error(data.detail || `HTTP error! status: ${response.status}`);
+        error.status = response.status;
+        error.data = data;
+        
+        // Специальная обработка для ошибок авторизации
+        if (response.status === 401) {
+          localStorage.removeItem('token');
+          // Убираем перенаправление на главную страницу
+          // window.location.href = '/';
+        }
+        
+        throw error;
+      }
+
+      return data;
     } catch (error) {
       console.error('API request failed:', error);
-      throw error;
+      if (error instanceof Error) {
+        throw error;
+      } else {
+        throw new Error('Неизвестная ошибка при выполнении запроса');
+      }
     }
   }
 
