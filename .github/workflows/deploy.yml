@@ -31,9 +31,27 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            # Проверяем наличие Node.js и npm, устанавливаем при необходимости
+            if ! command -v node &> /dev/null; then
+              echo "Node.js не найден, устанавливаем..."
+              # Для Ubuntu/Debian
+              curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+              sudo apt-get install -y nodejs
+              # Для CentOS/RHEL
+              # curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash -
+              # sudo yum install -y nodejs
+            fi
+            
             cd /home/n1x9s/front
             git pull origin rollback-directions
-            npm ci
-            npm run build
+            
+            # Используем полный путь к npm
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            
+            # Или используем глобальный npm
+            which npm && npm ci || $(which npm) ci
+            which npm && npm run build || $(which npm) run build
+            
             # При необходимости перезапустите сервис
             # systemctl restart your-service 
