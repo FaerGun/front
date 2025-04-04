@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 import './App.css'
 import photo from './assets/photo.png'
 import Onboarding1 from './pages/onboarding-1'
+import ChatInterview from './pages/ChatInterview'
 import PhoneInput from './components/PhoneInput'
 import NameInput from './components/NameInput'
 import EmailInput from './components/EmailInput'
@@ -424,6 +425,7 @@ function App() {
           </div>
         } />
         <Route path="/onboarding-1" element={<Onboarding1 />} />
+        <Route path="/chat-interview" element={<ChatInterview />} />
       </Routes>
     </>
   )
