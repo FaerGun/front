@@ -1550,7 +1550,7 @@ body.chat-open {
   color: #000000;
 }
 
-.dashboard {
+.chat-interview .dashboard {
   position: fixed;
   width: 106px;
   height: 38px;
@@ -1562,7 +1562,10 @@ body.chat-open {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
+.chat-interview  .dashboard-show {
+  opacity: 1;
+  transform: translateY(0);
+}
 .dashboard svg {
   width: 100%;
   height: 100%;
