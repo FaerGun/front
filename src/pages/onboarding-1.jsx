@@ -50,14 +50,8 @@ const Onboarding1 = () => {
 
   const handleFinalNext = () => {
     if (selectedDirections.length > 0) {
-      setShowSecondStep(false);
-      setShowElements(false);
-      setTimeout(() => {
-        setShowChat(true);
-        setTimeout(() => {
-          setShowElements(true);
-        }, 100);
-      }, 300);
+      // Перенаправляем на страницу ChatInterview
+      navigate('/chat-interview');
     }
   };
 
