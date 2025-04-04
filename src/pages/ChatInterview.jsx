@@ -60,7 +60,7 @@ const ChatInterview = () => {
       timestamp: new Date()
     };
     
-    // Добавляем сообщение в активный чат
+    // Добавляем сообщение в активный ча 
     if (activeChat === 1) {
       setMessagesChat1(prev => [...prev, newMessage]);
     } else {

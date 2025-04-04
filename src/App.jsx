@@ -18,14 +18,14 @@ function App() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   
-  // Пример существующих адресов электронной почты
+  // Пример существующих адресов электронной почты 
   const existingEmails = ['test@example.com', 'user@example.com'];
 
   useEffect(() => {
     // Имитация загрузки
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // Загрузка длится 2 секунды
+    }, 2000); // Загрузка длится 2 секунды 
 
     return () => clearTimeout(timer);
   }, []);
