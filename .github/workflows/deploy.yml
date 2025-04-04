@@ -1,0 +1,57 @@
+name: Deploy to production server
+
+on:
+  push:
+    branches:
+      - rollback-directions
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # Проверяем наличие Node.js и npm, устанавливаем при необходимости
+            if ! command -v node &> /dev/null; then
+              echo "Node.js не найден, устанавливаем..."
+              # Для Ubuntu/Debian
+              curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+              sudo apt-get install -y nodejs
+              # Для CentOS/RHEL
+              # curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash -
+              # sudo yum install -y nodejs
+            fi
+            
+            cd /home/n1x9s/front
+            git pull origin rollback-directions
+            
+            # Используем полный путь к npm
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            
+            # Или используем глобальный npm
+            which npm && npm ci || $(which npm) ci
+            which npm && npm run build || $(which npm) run build
+            
+            # При необходимости перезапустите сервис
+            # systemctl restart your-service 
