@@ -1,0 +1,130 @@
+.statistics {
+ /* viewtrain.ru/dashboard */
+
+ position: fixed;
+ width: 1920px;
+ height: 1080px;
+ left: 0px;
+ top: 0px;
+ background: #000000;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ z-index: 1;
+ overflow: hidden;
+
+}
+
+.statistics-container {
+  top: 30px;
+    position: relative;
+    width: 1840px;
+    height: 974px;
+    background: #EEEEEE;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.statistics .logo{
+  /* Vector */
+
+position: absolute;
+width: 191px;
+height: 26px;
+left: 60px;
+top: 30px;
+
+
+
+}
+.statistics .dashboard{
+  /* Frame 26 */
+
+  position: fixed;
+  width: 106px;
+  height: 38px;
+  left: 500px;
+  top: 30px;
+  background: #000000;
+  border-radius: 19px;
+  z-index: 2;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+
+}
+.stats-card-main-stats{
+  /* Rectangle 15 */
+
+position: absolute;
+width: 890px;
+height: 934px;
+left: 10px;
+top: 10px;
+
+background: #D9D9D9;
+border-radius: 30px;
+/* стата общая по собесам круговая диаграмма процент успешных прохождений процент пропущенных заданий процент неуспешных заданий */
+
+
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 48px;
+line-height: 58px;
+letter-spacing: -0.04em;
+
+color: #000000;
+
+
+}
+.stats-card1{
+/* Rectangle 17 */
+
+position: absolute;
+width: 910px;
+height: 457px;
+left: 920px;
+top: 10px;
+
+background: #D9D9D9;
+border-radius: 30px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 48px;
+line-height: 121%;
+letter-spacing: -0.04em;
+
+color: #000000;
+}
+.stats-card2{
+/* Rectangle 16 */
+
+position: absolute;
+width: 910px;
+height: 457px;
+left: 920px;
+top: 480px;
+
+background: #D9D9D9;
+border-radius: 30px;
+
+
+
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 48px;
+line-height: 121%;
+letter-spacing: -0.04em;
+
+color: #000000;
+
+
+}

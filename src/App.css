@@ -1,12 +1,10 @@
-.logo{
+.background .logo{
 position: fixed;
 width: 191px;
 height: 26px;
 left: 60px;
 top: 60px;
-
-background: #ffffff;
-
+background-color: transparent;
 z-index: 2;
 }
 .background {
@@ -17,7 +15,7 @@ width: 1307px;
 height: 1040px;
 left: 20px;
 top: 20px;
-background: #FFFFFF;
+background: #ffffff;
 border-radius: 30px;
 
 }
@@ -922,11 +920,11 @@ flex-grow: 0;
 
 .onboarding-1 {
   width: 1920px;
-  height: 1200px;
+  height: 1080px;
   position: fixed;
   left: 4px;
+  top: 0px;
   background-color: #000000;
-  position: relative;
   overflow: hidden;
 }
 
@@ -949,6 +947,7 @@ flex-grow: 0;
 }
 
 .onboarding-1 .logo {
+  position: absolute;
   width: 191px;
   height: 26px;
   top: 30px;
@@ -960,6 +959,7 @@ flex-grow: 0;
 }
 
 .onboarding-1 .logo.show {
+  
   opacity: 1;
   transform: translateY(0);
 }
