@@ -163,18 +163,18 @@ function App() {
         
         // Проверяем существование email через API
         const emailExists = await authApi.checkEmailExists(localEmail);
-        console.log('Email exists:', emailExists);
         
         if (emailExists) {
-          console.log('Email exists, redirecting to auth...');
-          setStep(3); // Переход к авторизации
+          // Если email существует, переходим к авторизации
+          setStep(3);
+          setError('Этот email уже зарегистрирован. Пожалуйста, войдите в систему.');
         } else {
-          console.log('Email is new, redirecting to registration...');
-          setStep(2); // Переход к регистрации
+          // Если email новый, переходим к регистрации
+          setStep(2);
         }
       } catch (error) {
-        console.error('Error:', error);
-        setError('Произошла ошибка при проверке email');
+        console.error('Ошибка при проверке email:', error);
+        setError('Произошла ошибка при проверке email. Пожалуйста, попробуйте позже.');
       } finally {
         setIsChecking(false);
       }
@@ -195,11 +195,12 @@ function App() {
               value={localEmail}
               onChange={handleEmailChange}
               placeholder="Электронная почта"
+              disabled={isChecking}
             />
           </div>
           <div 
-            className={`button-next ${isValid ? 'active' : ''}`}
-            onClick={handleNextButtonClick}
+            className={`button-next ${isValid && !isChecking ? 'active' : ''}`}
+            onClick={!isChecking ? handleNextButtonClick : undefined}
           >
             <span>{isChecking ? 'Проверка...' : 'Далее'}</span>
           </div>
