@@ -19,6 +19,25 @@ export const authApi = {
     return response;
   },
 
+  async checkEmailExists(email) {
+    try {
+      console.log('Checking email:', email);
+      const response = await apiClient.post(API_CONFIG.ENDPOINTS.AUTH.CHECK_EMAIL, { email });
+      console.log('Check email response:', response);
+      return response.exists;
+    } catch (error) {
+      console.error('Error checking email:', error);
+      // Если получаем ошибку с кодом 400 или сообщением о существовании email
+      if (error.status === 400 || (error.data && error.data.detail && error.data.detail.includes("already exists"))) {
+        console.log('Email already exists');
+        return true;
+      }
+      // Для других ошибок считаем, что email не существует
+      console.log('Other error, assuming email does not exist');
+      return false;
+    }
+  },
+
   async logout() {
     localStorage.removeItem('token');
     return apiClient.post(API_CONFIG.ENDPOINTS.AUTH.LOGOUT);

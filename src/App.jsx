@@ -140,6 +140,7 @@ function App() {
     const [hasInput, setHasInput] = useState(false);
     const [isValid, setIsValid] = useState(false);
     const [localEmail, setLocalEmail] = useState('');
+    const [isChecking, setIsChecking] = useState(false);
     
     const handleEmailChange = (value) => {
       setLocalEmail(value);
@@ -150,15 +151,35 @@ function App() {
       setError(''); // Очищаем ошибку при вводе
     };
     
-    const handleNextButtonClick = () => {
+    const handleNextButtonClick = async () => {
       if (!isValid) {
         setError('Введите корректный email на английском языке');
         return;
       }
-      setEmail(localEmail); // Устанавливаем email в родительском компоненте
-      setStep(2); // Всегда переходим к регистрации сначала
+
+      try {
+        setIsChecking(true);
+        setEmail(localEmail);
+        
+        // Проверяем существование email через API
+        const emailExists = await authApi.checkEmailExists(localEmail);
+        console.log('Email exists:', emailExists);
+        
+        if (emailExists) {
+          console.log('Email exists, redirecting to auth...');
+          setStep(3); // Переход к авторизации
+        } else {
+          console.log('Email is new, redirecting to registration...');
+          setStep(2); // Переход к регистрации
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        setError('Произошла ошибка при проверке email');
+      } finally {
+        setIsChecking(false);
+      }
     };
-    
+
     return (
       <>
         <h1>Тренируйся.<br/>Анализируй.<br/>Побеждай!</h1>
@@ -180,7 +201,7 @@ function App() {
             className={`button-next ${isValid ? 'active' : ''}`}
             onClick={handleNextButtonClick}
           >
-            <span>Далее</span>
+            <span>{isChecking ? 'Проверка...' : 'Далее'}</span>
           </div>
           <div className="terms">
             Регистрируясь, вы подтверждаете, что согласны с нашими <u>Условиями использования</u> и <u>Политикой конфиденциальности</u>.

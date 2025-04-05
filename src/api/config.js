@@ -11,7 +11,8 @@ export const API_CONFIG = {
       DIRECTIONS: '/auth/directions',
       LANGUAGES: '/auth/languages',
       SELECT_DIRECTIONS: '/auth/select-directions',
-      SELECT_LANGUAGES: '/auth/select-languages'
+      SELECT_LANGUAGES: '/auth/select-languages',
+      CHECK_EMAIL: '/auth/check-email'
     },
     INTERVIEW: {
       START: '/interview/start',
