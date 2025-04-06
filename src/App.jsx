@@ -122,7 +122,8 @@ function App() {
 
   const Overlay = ({ isVisible, userName }) => {
     const handleButtonClick = () => {
-      navigate('/onboarding-1');
+      /*navigate('/onboarding-1');*/
+      navigate('/chat-interview');
     };
 
     return (
