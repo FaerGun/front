@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ChatInterview.css';
 import { useNavigate } from 'react-router-dom';
 
-const API_BASE_URL = 'http://176.109.99.216/api/v1';
+const API_BASE_URL = '/api/v1';
 
 const ChatInterview = () => {
   const [messages, setMessages] = useState([]);
@@ -18,28 +18,18 @@ const ChatInterview = () => {
   useEffect(() => {
     document.body.classList.add('chat-open');
     setShowElements(true);
-    const token = localStorage.getItem('token');
-    console.log('Токен при загрузке компонента:', token);
     return () => {
       document.body.classList.remove('chat-open');
     };
   }, []);
 
   const getAuthHeaders = () => {
-    const token = localStorage.getItem('token');
-    console.log('Получен токен из localStorage:', token);
-    console.log('Результат обновления токена:', { ok: true, tokenLength: token?.length });
-    
-    const headers = {
-      'Authorization': `Bearer ${token}`,
+    return {
       'Content-Type': 'application/json',
       'X-API-Key': 'interview',
       'Accept': 'application/json',
       'X-Requested-With': 'XMLHttpRequest'
     };
-    
-    console.log('Сформированные заголовки:', headers);
-    return headers;
   };
 
   const startInterview = async () => {
@@ -50,7 +40,8 @@ const ChatInterview = () => {
       
       const response = await fetch(`${API_BASE_URL}/interview/start`, {
         method: 'GET',
-        headers: headers
+        headers: headers,
+        credentials: 'include'
       });
 
       console.log('Статус ответа:', response.status);
@@ -96,7 +87,8 @@ const ChatInterview = () => {
     try {
       const response = await fetch(`${API_BASE_URL}/interview/question`, {
         method: 'GET',
-        headers: getAuthHeaders()
+        headers: getAuthHeaders(),
+        credentials: 'include'
       });
 
       if (!response.ok) {
@@ -131,6 +123,7 @@ const ChatInterview = () => {
       const response = await fetch(`${API_BASE_URL}/interview/answer`, {
         method: 'POST',
         headers: getAuthHeaders(),
+        credentials: 'include',
         body: JSON.stringify({
           question_id: currentQuestionId,
           user_answer: answer
