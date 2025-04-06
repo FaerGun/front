@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './ChatInterview.css';
 import { useNavigate } from 'react-router-dom';
 
+const API_BASE_URL = 'http://176.109.99.216/api/v1';
+
 const ChatInterview = () => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
@@ -16,35 +18,56 @@ const ChatInterview = () => {
   useEffect(() => {
     document.body.classList.add('chat-open');
     setShowElements(true);
+    const token = localStorage.getItem('token');
+    console.log('Токен при загрузке компонента:', token);
     return () => {
       document.body.classList.remove('chat-open');
     };
   }, []);
 
   const getAuthHeaders = () => {
-    const token = localStorage.getItem('access_token');
-    return {
+    const token = localStorage.getItem('token');
+    console.log('Получен токен из localStorage:', token);
+    console.log('Результат обновления токена:', { ok: true, tokenLength: token?.length });
+    
+    const headers = {
       'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'X-API-Key': 'interview',
+      'Accept': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
     };
+    
+    console.log('Сформированные заголовки:', headers);
+    return headers;
   };
 
   const startInterview = async () => {
     try {
-      const response = await fetch('/api/interview/start', {
-        method: 'POST',
-        headers: getAuthHeaders()
+      console.log('Начинаем интервью - отправляем запрос...');
+      const headers = getAuthHeaders();
+      console.log('Заголовки для запроса:', headers);
+      
+      const response = await fetch(`${API_BASE_URL}/interview/start`, {
+        method: 'GET',
+        headers: headers
       });
+
+      console.log('Статус ответа:', response.status);
+      console.log('Заголовки ответа:', Object.fromEntries(response.headers.entries()));
 
       if (!response.ok) {
         if (response.status === 401) {
-          navigate('/login');
-          return;
+          const errorData = await response.json();
+          console.error('Ошибка авторизации:', errorData);
+          throw new Error(errorData.detail || 'Токен истек');
         }
         throw new Error('Ошибка при запуске интервью');
       }
 
       const data = await response.json();
+      console.log('Получены данные:', data);
+      
       setInterviewStatus('ongoing');
       setIsInterviewStarted(true);
       setMessages(prev => [...prev, {
@@ -54,9 +77,15 @@ const ChatInterview = () => {
       }]);
       await getNextQuestion();
     } catch (error) {
-      console.error('Ошибка:', error);
+      console.error('Ошибка при запуске интервью:', error);
+      console.error('Полная информация об ошибке:', {
+        message: error.message,
+        stack: error.stack,
+        name: error.name
+      });
+      
       setMessages(prev => [...prev, {
-        text: 'Произошла ошибка при запуске интервью. Пожалуйста, попробуйте позже.',
+        text: error.message || 'Произошла ошибка при запуске интервью. Пожалуйста, попробуйте позже.',
         isBot: true,
         timestamp: new Date()
       }]);
@@ -65,15 +94,15 @@ const ChatInterview = () => {
 
   const getNextQuestion = async () => {
     try {
-      const response = await fetch('/api/interview/question', {
+      const response = await fetch(`${API_BASE_URL}/interview/question`, {
         method: 'GET',
         headers: getAuthHeaders()
       });
 
       if (!response.ok) {
         if (response.status === 401) {
-          navigate('/login');
-          return;
+          const errorData = await response.json();
+          throw new Error(errorData.detail || 'Токен истек');
         }
         throw new Error('Ошибка при получении вопроса');
       }
@@ -88,7 +117,7 @@ const ChatInterview = () => {
     } catch (error) {
       console.error('Ошибка:', error);
       setMessages(prev => [...prev, {
-        text: 'Произошла ошибка при получении вопроса. Пожалуйста, попробуйте позже.',
+        text: error.message || 'Произошла ошибка при получении вопроса. Пожалуйста, попробуйте позже.',
         isBot: true,
         timestamp: new Date()
       }]);
@@ -99,7 +128,7 @@ const ChatInterview = () => {
     if (!currentQuestionId) return;
 
     try {
-      const response = await fetch('/api/interview/answer', {
+      const response = await fetch(`${API_BASE_URL}/interview/answer`, {
         method: 'POST',
         headers: getAuthHeaders(),
         body: JSON.stringify({
@@ -110,8 +139,8 @@ const ChatInterview = () => {
 
       if (!response.ok) {
         if (response.status === 401) {
-          navigate('/login');
-          return;
+          const errorData = await response.json();
+          throw new Error(errorData.detail || 'Токен истек');
         }
         throw new Error('Ошибка при отправке ответа');
       }
@@ -145,7 +174,7 @@ const ChatInterview = () => {
     } catch (error) {
       console.error('Ошибка:', error);
       setMessages(prev => [...prev, {
-        text: 'Произошла ошибка при отправке ответа. Пожалуйста, попробуйте позже.',
+        text: error.message || 'Произошла ошибка при отправке ответа. Пожалуйста, попробуйте позже.',
         isBot: true,
         timestamp: new Date()
       }]);
