@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './ChatInterview.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,8 +12,17 @@ const ChatInterview = () => {
   const [currentQuestionId, setCurrentQuestionId] = useState(null);
   const [interviewStatus, setInterviewStatus] = useState('not_started');
   const [isInterviewStarted, setIsInterviewStarted] = useState(false);
+  const messagesEndRef = useRef(null);
 
   const navigate = useNavigate();
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   useEffect(() => {
     document.body.classList.add('chat-open');
@@ -288,6 +297,7 @@ const ChatInterview = () => {
                 {message.text}
               </div>
             ))}
+            <div ref={messagesEndRef} />
           </div>
           <form onSubmit={handleSendMessage} className={`chat-input-container ${isListHidden ? 'expanded' : ''}`}>
             <input
