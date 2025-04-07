@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ChatInterview.css';
 import { useNavigate } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 
-const API_BASE_URL = '/api/v1';
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
 const ChatInterview = () => {
   const [messages, setMessages] = useState([]);
@@ -66,7 +67,11 @@ const ChatInterview = () => {
       setIsInterviewStarted(true);
       setProgress(0);
       setCurrentQuestionNumber(0);
-      setMessages([]);
+      setMessages([{
+        text: '## Давайте начнем интервью\n\nЯ задам вам серию вопросов о backend-разработке. Отвечайте максимально подробно и точно.',
+        isBot: true,
+        timestamp: new Date()
+      }]);
       await getNextQuestion(); // Получаем первый вопрос сразу после старта
     } catch (error) {
       console.error('Ошибка при запуске интервью:', error);
@@ -104,7 +109,7 @@ const ChatInterview = () => {
     } catch (error) {
       console.error('Ошибка:', error);
       setMessages(prev => [...prev, {
-        text: error.message || 'Произошла ошибка при получении вопроса. Пожалуйста, попробуйте позже.',
+        text: `**Ошибка**: ${error.message || 'Произошла ошибка при получении вопроса. Пожалуйста, попробуйте позже.'}`,
         isBot: true,
         timestamp: new Date()
       }]);
@@ -144,7 +149,7 @@ const ChatInterview = () => {
 
       // Добавляем оценку и обратную связь
       setMessages(prev => [...prev, {
-        text: `Оценка: ${data.score}\nОбратная связь: ${data.feedback}`,
+        text: `### Оценка: ${data.score}\n\n${data.feedback}`,
         isBot: true,
         timestamp: new Date()
       }]);
@@ -153,7 +158,7 @@ const ChatInterview = () => {
         setInterviewStatus('completed');
         setProgress(100);
         setMessages(prev => [...prev, {
-          text: `Интервью завершено!\nИтоговая оценка: ${data.final_score}%\n${data.final_feedback}`,
+          text: `## Интервью завершено!\n\n### Итоговая оценка: ${data.final_score}%\n\n${data.final_feedback}`,
           isBot: true,
           timestamp: new Date()
         }]);
@@ -165,7 +170,7 @@ const ChatInterview = () => {
     } catch (error) {
       console.error('Ошибка:', error);
       setMessages(prev => [...prev, {
-        text: error.message || 'Произошла ошибка при отправке ответа. Пожалуйста, попробуйте позже.',
+        text: `**Ошибка**: ${error.message || 'Произошла ошибка при отправке ответа. Пожалуйста, попробуйте позже.'}`,
         isBot: true,
         timestamp: new Date()
       }]);
@@ -303,7 +308,7 @@ const ChatInterview = () => {
           <div className={`chat-messages ${isListHidden ? 'expanded' : ''}`}>
             {messages.map((message, index) => (
               <div key={index} className={`message ${message.isBot ? 'bot' : 'user'}`}>
-                {message.text}
+                <ReactMarkdown>{message.text}</ReactMarkdown>
               </div>
             ))}
             <div ref={messagesEndRef} />

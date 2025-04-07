@@ -105,6 +105,84 @@
     font-size: 16px;
   }
   
+  /* Стили для Markdown элементов */
+  .message p {
+    margin: 0 0 10px 0;
+  }
+  
+  .message p:last-child {
+    margin: 0;
+  }
+  
+  .message h1, .message h2, .message h3, .message h4, .message h5, .message h6 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  
+  .message h1 {
+    font-size: 1.5em;
+  }
+  
+  .message h2 {
+    font-size: 1.3em;
+  }
+  
+  .message h3 {
+    font-size: 1.2em;
+  }
+  
+  .message code {
+    background-color: rgba(0, 0, 0, 0.07);
+    border-radius: 3px;
+    padding: 2px 4px;
+    font-family: 'Courier New', monospace;
+  }
+  
+  .message pre {
+    background-color: rgba(0, 0, 0, 0.07);
+    border-radius: 5px;
+    padding: 10px;
+    overflow-x: auto;
+    margin: 0 0 10px 0;
+  }
+  
+  .message pre code {
+    background-color: transparent;
+    padding: 0;
+  }
+  
+  .message ul, .message ol {
+    margin: 0 0 10px 0;
+    padding-left: 20px;
+  }
+  
+  .message blockquote {
+    border-left: 4px solid #B3DB32;
+    margin: 0 0 10px 0;
+    padding-left: 10px;
+    color: #555;
+  }
+  
+  .message a {
+    color: #0366d6;
+    text-decoration: none;
+  }
+  
+  .message a:hover {
+    text-decoration: underline;
+  }
+  
+  .message img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin: 5px 0;
+  }
+  
+  .message.user blockquote {
+    border-left-color: #888;
+  }
+  
   @keyframes messageAppear {
     0% {
       opacity: 0;
