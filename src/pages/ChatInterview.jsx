@@ -30,6 +30,7 @@ const ChatInterview = () => {
   useEffect(() => {
     document.body.classList.add('chat-open');
     setShowElements(true);
+    startInterview(); // Автоматически запускаем интервью при монтировании компонента
     return () => {
       document.body.classList.remove('chat-open');
     };
@@ -65,15 +66,11 @@ const ChatInterview = () => {
       setIsInterviewStarted(true);
       setProgress(0);
       setCurrentQuestionNumber(0);
-      setMessages(prev => [...prev, {
-        text: 'Интервью начато. Давайте начнем с первого вопроса.',
-        isBot: true,
-        timestamp: new Date()
-      }]);
-      await getNextQuestion();
+      setMessages([]);
+      await getNextQuestion(); // Получаем первый вопрос сразу после старта
     } catch (error) {
       console.error('Ошибка при запуске интервью:', error);
-      setMessages(prev => [...prev, {
+      setMessages([{
         text: error.message || 'Произошла ошибка при запуске интервью. Пожалуйста, попробуйте позже.',
         isBot: true,
         timestamp: new Date()
@@ -138,12 +135,14 @@ const ChatInterview = () => {
 
       const data = await response.json();
       
+      // Добавляем только ответ пользователя
       setMessages(prev => [...prev, {
         text: answer,
         isBot: false,
         timestamp: new Date()
       }]);
 
+      // Добавляем оценку и обратную связь
       setMessages(prev => [...prev, {
         text: `Оценка: ${data.score}\nОбратная связь: ${data.feedback}`,
         isBot: true,
@@ -179,20 +178,7 @@ const ChatInterview = () => {
 
     const message = inputMessage.trim();
     setInputMessage('');
-
-    if (!isInterviewStarted) {
-      if (message.toLowerCase() === '/start') {
-        await startInterview();
-      } else {
-        setMessages(prev => [...prev, {
-          text: 'Для начала интервью введите команду /start',
-          isBot: true,
-          timestamp: new Date()
-        }]);
-      }
-    } else {
-      await submitAnswer(message);
-    }
+    await submitAnswer(message);
   };
 
   const toggleList = () => {
@@ -211,6 +197,11 @@ const ChatInterview = () => {
     setInterviewStatus('not_started');
     setIsInterviewStarted(false);
     setCurrentQuestionId(null);
+    
+    // Запускаем интервью автоматически после сброса состояния
+    setTimeout(() => {
+      startInterview();
+    }, 100);
   };
 
   return (
@@ -322,7 +313,7 @@ const ChatInterview = () => {
               type="text"
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
-              placeholder={!isInterviewStarted ? "Введите /start для начала интервью" : "Введите ваш ответ..."}
+              placeholder="Введите ваш ответ..."
               className="chat-input"
             />
             <button type="submit" className="send-button">
