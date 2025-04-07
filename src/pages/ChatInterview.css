@@ -31,6 +31,7 @@
   
   .chat-title {
     position: absolute;
+    width: 1230px;
     height: 50px;
     left: 540px;
     top: 20px;
@@ -93,7 +94,7 @@
     min-width: 100px;
     max-width: 70%;
     padding: 10px 15px;
-    border-radius: 30px;
+    border-radius: 20px;
     word-wrap: break-word;
     white-space: pre-wrap;
     margin-bottom: 8px;
@@ -121,6 +122,7 @@
     margin-right: auto;
     margin-left: 12px;
     color: #000000;
+    border-radius: 30px;
   }
   
   .message.user {
@@ -129,6 +131,7 @@
     margin-left: auto;
     margin-right: 12px;
     color: #000000;
+    border-radius: 30px;
   }
   
   .chat-input-container {
@@ -285,7 +288,7 @@
     gap: 10px;
     position: absolute;
     width: 371px;
-    height: 121px;
+    height: 151px;
     left: 30px;
     top: 100px;
     border: 2px solid #B3DB32;
@@ -519,3 +522,52 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+.progress-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.progress-container {
+  flex: 1;
+  height: 6px;
+  background: #EEEEEE;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  position: absolute;
+  height: 6px;
+  background: #B3DB32;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.progress-restart {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.progress-restart:hover {
+  transform: rotate(180deg);
+}
+.progress-restart svg {
+  width: 20px;
+  height: 20px;
+}
+.progress-restart path {
+  stroke: #B3DB32;
+  stroke-width: 2;
+}

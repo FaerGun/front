@@ -12,6 +12,9 @@ const ChatInterview = () => {
   const [currentQuestionId, setCurrentQuestionId] = useState(null);
   const [interviewStatus, setInterviewStatus] = useState('not_started');
   const [isInterviewStarted, setIsInterviewStarted] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [totalQuestions] = useState(10); // Предполагаемое количество вопросов
+  const [currentQuestionNumber, setCurrentQuestionNumber] = useState(0);
   const messagesEndRef = useRef(null);
 
   const navigate = useNavigate();
@@ -43,33 +46,25 @@ const ChatInterview = () => {
 
   const startInterview = async () => {
     try {
-      console.log('Начинаем интервью - отправляем запрос...');
-      const headers = getAuthHeaders();
-      console.log('Заголовки для запроса:', headers);
-      
       const response = await fetch(`${API_BASE_URL}/interview/start`, {
         method: 'GET',
-        headers: headers,
+        headers: getAuthHeaders(),
         credentials: 'include'
       });
-
-      console.log('Статус ответа:', response.status);
-      console.log('Заголовки ответа:', Object.fromEntries(response.headers.entries()));
 
       if (!response.ok) {
         if (response.status === 401) {
           const errorData = await response.json();
-          console.error('Ошибка авторизации:', errorData);
           throw new Error(errorData.detail || 'Токен истек');
         }
         throw new Error('Ошибка при запуске интервью');
       }
 
       const data = await response.json();
-      console.log('Получены данные:', data);
-      
       setInterviewStatus('ongoing');
       setIsInterviewStarted(true);
+      setProgress(0);
+      setCurrentQuestionNumber(0);
       setMessages(prev => [...prev, {
         text: 'Интервью начато. Давайте начнем с первого вопроса.',
         isBot: true,
@@ -78,12 +73,6 @@ const ChatInterview = () => {
       await getNextQuestion();
     } catch (error) {
       console.error('Ошибка при запуске интервью:', error);
-      console.error('Полная информация об ошибке:', {
-        message: error.message,
-        stack: error.stack,
-        name: error.name
-      });
-      
       setMessages(prev => [...prev, {
         text: error.message || 'Произошла ошибка при запуске интервью. Пожалуйста, попробуйте позже.',
         isBot: true,
@@ -149,14 +138,12 @@ const ChatInterview = () => {
 
       const data = await response.json();
       
-      // Добавляем ответ пользователя
       setMessages(prev => [...prev, {
         text: answer,
         isBot: false,
         timestamp: new Date()
       }]);
 
-      // Добавляем обратную связь
       setMessages(prev => [...prev, {
         text: `Оценка: ${data.score}\nОбратная связь: ${data.feedback}`,
         isBot: true,
@@ -165,12 +152,15 @@ const ChatInterview = () => {
 
       if (data.interview_completed) {
         setInterviewStatus('completed');
+        setProgress(100);
         setMessages(prev => [...prev, {
           text: `Интервью завершено!\nИтоговая оценка: ${data.final_score}%\n${data.final_feedback}`,
           isBot: true,
           timestamp: new Date()
         }]);
       } else {
+        setCurrentQuestionNumber(prev => prev + 1);
+        setProgress((currentQuestionNumber + 1) * (100 / totalQuestions));
         await getNextQuestion();
       }
     } catch (error) {
@@ -211,6 +201,16 @@ const ChatInterview = () => {
 
   const handleDashboardClick = () => {
     navigate('/');
+  };
+
+  const handleRestart = async () => {
+    setMessages([]);
+    setInputMessage('');
+    setProgress(0);
+    setCurrentQuestionNumber(0);
+    setInterviewStatus('not_started');
+    setIsInterviewStarted(false);
+    setCurrentQuestionId(null);
   };
 
   return (
@@ -260,6 +260,24 @@ const ChatInterview = () => {
               </div>
               <div className="chat-active-description">
                 {messages.length} сообщений
+              </div>
+              <div className="progress-wrapper">
+                <div className="progress-container">
+                  <div 
+                    className="progress-bar" 
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+                <button 
+                  className="progress-restart" 
+                  onClick={handleRestart}
+                  title="Начать заново"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.99988C16.9706 2.99988 21 7.02931 21 11.9999C21 16.9704 16.9706 20.9999 12 20.9999C7.02944 20.9999 3 16.9704 3 11.9999C3 9.17261 4.30367 6.64983 6.34267 4.99988" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    <path d="M3 4.49988H7V8.49988" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
               </div>
             </div>
             <svg className="chat-list-icon2" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
