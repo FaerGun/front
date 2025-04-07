@@ -31,10 +31,9 @@
   
   .chat-title {
     position: absolute;
-    
-    height: 29px;
-    left: 545px;
-    top: 30px;
+    height: 50px;
+    left: 540px;
+    top: 20px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
@@ -42,8 +41,11 @@
     line-height: 121.43%;
     letter-spacing: -0.04em;
     color: #000000;
-    z-index: 1000;
+    z-index: 2;
     transition: all 0.3s ease;
+    background: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 15px 15px 0 0;
   }
   
   .chat-title.moved {
@@ -53,17 +55,31 @@
   .chat-messages {
     position: absolute;
     width: 1270px;
-    height: 800px;
-    left: 515px;
+    height: 805px;
+    left: 500px;
     top: 20px;
     background: #FFFFFF;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    padding-top: 80px;
+    padding: 30px;
     overflow-y: auto;
     transition: all 0.3s ease;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  }
+  
+  .chat-messages::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .chat-messages::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .chat-messages::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
   }
   
   .chat-messages.expanded {
@@ -75,15 +91,17 @@
     position: relative;
     width: fit-content;
     min-width: 100px;
-    max-width: 500px;
-    padding: 20px;
+    max-width: 70%;
+    padding: 10px 15px;
     border-radius: 30px;
     word-wrap: break-word;
     white-space: pre-wrap;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     animation: messageAppear 0.3s ease forwards;
     opacity: 0;
     transform: translateY(20px);
+    line-height: 1.5;
+    font-size: 16px;
   }
   
   @keyframes messageAppear {
@@ -101,14 +119,15 @@
     background: #EEEEEE;
     align-self: flex-start;
     margin-right: auto;
+    margin-left: 12px;
     color: #000000;
-    margin-top: 100px;
   }
   
   .message.user {
     background: #B3DB32;
     align-self: flex-end;
     margin-left: auto;
+    margin-right: 12px;
     color: #000000;
   }
   
@@ -116,7 +135,7 @@
     position: absolute;
     width: 1270px;
     height: 64px;
-    left: 515px;
+    left: 505px;
     bottom: 20px;
     background: #EEEEEE;
     border-radius: 30px;
@@ -155,21 +174,52 @@
     position: relative;
     width: 52px;
     height: 52px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
     background: #B3DB32;
     border-radius: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border: none;
-    padding: 0;
-    margin-left: 10px;
   }
   
   .send-button svg {
     width: 52px;
     height: 52px;
-    display: block;
+  }
+  
+  .send-button.restart svg {
+    transform: rotate(180deg);
+  }
+  
+  .send-button:hover {
+    opacity: 0.9;
+  }
+  
+  .send-button:active {
+    transform: scale(0.95);
+  }
+  
+  .send-button.restart:active {
+    transform: scale(0.95);
+  }
+  
+  @keyframes rotateRestart {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(180deg);
+    }
+  }
+  
+  .send-button.restart {
+    animation: rotateRestart 0.3s ease forwards;
   }
   
   .chat-list {
