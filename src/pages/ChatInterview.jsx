@@ -3,7 +3,8 @@ import './ChatInterview.css';
 import { useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+// Возвращаем оригинальное значение
+const API_BASE_URL = '/api/v1';
 
 const ChatInterview = () => {
   const [messages, setMessages] = useState([]);
@@ -31,9 +32,15 @@ const ChatInterview = () => {
   useEffect(() => {
     document.body.classList.add('chat-open');
     setShowElements(true);
-    startInterview(); // Автоматически запускаем интервью при монтировании компонента
+    
+    // Добавляем небольшую задержку перед запуском интервью
+    const timer = setTimeout(() => {
+      startInterview(); // Запуск интервью с задержкой
+    }, 500);
+    
     return () => {
       document.body.classList.remove('chat-open');
+      clearTimeout(timer);
     };
   }, []);
 
@@ -76,7 +83,7 @@ const ChatInterview = () => {
     } catch (error) {
       console.error('Ошибка при запуске интервью:', error);
       setMessages([{
-        text: error.message || 'Произошла ошибка при запуске интервью. Пожалуйста, попробуйте позже.',
+        text: `## Произошла ошибка\n\n**${error.message}**\n\nПопробуйте перезагрузить страницу или нажать кнопку перезапуска справа от прогресс-бара.`,
         isBot: true,
         timestamp: new Date()
       }]);
