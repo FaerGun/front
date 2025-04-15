@@ -64,9 +64,9 @@ function App() {
         formData.phone
       );
       
-      // Если регистрация успешна, показываем overlay
+      // Если регистрация успешна, показываем AutorizationStepCompleted
       setUserName(formData.name);
-      setShowOverlay(true);
+      setStep(4); // Переключаем на экран успешной регистрации
     } catch (error) {
       console.error('Ошибка при регистрации:', error);
       
@@ -78,8 +78,8 @@ function App() {
       // Проверяем статус ошибки
       if (error.status === 409 || errorMessage.includes("Email already registered")) {
         // Если почта уже зарегистрирована, переходим к авторизации
-        setEmail(email); // Убеждаемся, что email установлен
-        setStep(3); // Переход к авторизации
+        setEmail(email);
+        setStep(3);
         setError('Этот email уже зарегистрирован. Пожалуйста, войдите в систему.');
       } else {
         setError(errorMessage || 'Произошла ошибка при регистрации');
@@ -94,9 +94,9 @@ function App() {
       // Отправляем данные на сервер
       const response = await authApi.login(formData.email, formData.password);
       
-      // Если авторизация успешна, показываем overlay
+      // Если авторизация успешна, показываем AutorizationStepCompleted
       setUserName(formData.email.split('@')[0]); // Берем имя из email до @
-      setShowOverlay(true);
+      setStep(4); // Переключаем на экран успешной авторизации
     } catch (error) {
       console.error('Ошибка при авторизации:', error);
       
@@ -212,6 +212,7 @@ function App() {
       </>
     );
   };
+  
 
   const RegistrationStep = () => {
     const [formData, setFormData] = useState({
@@ -376,6 +377,27 @@ function App() {
     );
   };
 
+  const AutorizationStepCompleted = () => {
+    return (
+      <div className="CompletedStep">
+        <div className="content-wrapper">
+          <h2>УСПЕШНАЯ РЕГИСТРАЦИЯ</h2>
+          <p>Добро пожаловать<br/>на viewtrain, {userName}!</p>
+          <div className='photo-1'><img src="src/assets/photo-1.png"></img></div>
+          <div className='photo-2'><img src="src/assets/photo-2.png"/></div>
+          <div className="buttons-container">
+            <button className="primary-button" onClick={() => {
+              navigate('/onboarding-1');
+            }}>К выбору направления и языков</button>
+            <button className="secondary-button" onClick={() => {
+              navigate('/statistics');
+            }}>Профиль</button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       <div className={`loading-screen ${!isLoading ? 'hide' : ''}`}>
@@ -438,8 +460,11 @@ function App() {
           <div data-active={step === 3}>
             <AuthorizationStep />
           </div>
+          <div data-active={step === 4}>
+            <AutorizationStepCompleted/>
+          </div>
         </div>
-        {showOverlay && <Overlay isVisible={showOverlay} userName={userName} />}
+        
       </div>
     </>
   )

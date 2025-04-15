@@ -660,87 +660,115 @@ flex-grow: 0;
 .input-field input::placeholder {
   color: #868686;
 }
-
-.overlay {
+.CompletedStep{
+  position: absolute;
+  width: 100%;
+  height: auto;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.content-wrapper h2{
   position: fixed;
-  width: 100vw;
-  height: 100vh;
-  left: 0;
-  top: 0;
-  background: #FFFFFF;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-  z-index: 9999;
-}
-
-.overlay .content-wrapper {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 44px;
-  z-index: 10002;
-}
-
-.overlay h2 {
+  width: 473px;
+  height: 29px;
+  top: -60px;
+  left: 50px;
   font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 39px;
-  text-align: center;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 58px;
   letter-spacing: -0.04em;
+  text-transform: uppercase;
   color: #B3DB32;
-  margin: 0;
 }
-
-.overlay p {
+.content-wrapper p{
+  position: fixed;
+  width: 473px;
+  height: 116px;
+  top: -30px;
+  left: 50px;
   font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 64px;
-  line-height: 78px;
-  text-align: center;
+  font-weight: 500;
+  font-size: 44px;
+  line-height: 121%;
   letter-spacing: -0.04em;
   color: #000000;
-  margin: 0;
 }
+.photo-2 img{
+position: fixed;
+width: 424.65px;
+height: 424.65px;
+left: 290px;
+top: 200px;
+transform: rotate(-150deg);
+background: #ffffff;
+border-radius: 30px;
+mask-image: linear-gradient(to left, rgb(255, 255, 255), transparent);
+-webkit-mask-image: linear-gradient(to left, rgb(255, 255, 255), transparent);
 
-.overlay button {
-  width: 767px;
-  height: 87px;
-  background: #000000;
+}
+.photo-1 img{
+/* ChatGPT Image 5 апр. 2025 г., 19_06_42 1 */
+
+position: absolute;
+width: 507px;
+height: 507px;
+left: -150px;
+top: 296.21px;
+
+
+transform: rotate(30deg);
+mask-image: linear-gradient(to left, white, transparent);
+-webkit-mask-image: linear-gradient(to bottom, white, transparent);
+z-index: 1;
+}
+.primary-button{
+  position: fixed;
+  width: 473px;
+  height: 65px;
+  top: 800px;
+  left: 50px;
   border-radius: 30px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 28px;
-  line-height: 34px;
-  text-align: center;
-  letter-spacing: -0.04em;
-  color: #ffffff;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.overlay button:hover {
+  padding-top: 20px;
+  
+  padding-bottom: 20px;
+  
+  gap: 10px;
   background: #B3DB32;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.04em;
+  color: #000000;
+  
+}
+.secondary-button{
+  position: fixed;
+  width: 473px;
+  height: 65px;
+  top: 870px;
+  left: 50px;
+  border-radius: 30px;
+  padding-top: 20px;
+  
+  padding-bottom: 20px;
+  
+  gap: 10px;
+  background: #E1E1E1;
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: -0.04em;
+  color: #000000;
 }
 
-.overlay.show {
-  opacity: 1;
-  visibility: visible;
-}
 
 .loading-screen {
   position: fixed;
