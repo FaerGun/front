@@ -1018,7 +1018,7 @@ z-index: 1;
 .text-about-languages {
   position: absolute;
   width: 738px;
-  height: 351px;
+  height: 468px;
   top: 150px;
   left: 60px;
   font-family: 'Inter';
@@ -1063,6 +1063,7 @@ z-index: 1;
   transition: all 0.3s ease;
   opacity: 0;
   transform: translateY(20px);
+  overflow: hidden;
 }
 
 .languages-grid-1 { top: 30px; left: 970px; }
@@ -1121,6 +1122,124 @@ z-index: 1;
   background-color: #B3DB32;
   box-shadow: 0 0 30px rgba(179, 219, 50, 0.4);
 }
+.languages-grid-1 .language-image img{
+position: absolute;
+width: 276.85px;
+height: 276.85px;
+left: 180px;
+top: 0px;
+object-fit: cover;
+transform: matrix(-0.97, -0.26, -0.26, 0.97, 0, 0);
+
+}
+.languages-grid-2 .language-image img{
+
+
+position: absolute;
+width: 338.79px;
+height: 338.79px;
+left: 170px;
+top: -40px;
+
+
+transform: rotate(15deg);
+
+object-fit: cover;
+
+}
+
+.languages-grid-3 .language-image img{
+  position: absolute;
+width: 276.85px;
+height: 276.85px;
+left: 170px;
+top: -20px;
+
+
+transform: rotate(0deg);
+
+object-fit: cover;
+
+}
+.languages-grid-4 .language-image img{
+  position: absolute;
+width: 276.85px;
+height: 276.85px;
+left: 200px;
+top: -10px;
+
+
+transform: rotate(15deg);
+
+object-fit: cover;
+
+}
+.languages-grid-5 .language-image img{
+  position: absolute;
+width: 325.09px;
+height: 325.09px;
+left: 140px;
+top: -30px;
+
+
+transform: rotate(30deg);
+
+object-fit: cover;
+
+}
+.languages-grid-6 .language-image img{
+  position: absolute;
+width: 306.55px;
+height: 306.55px;
+left: 180px;
+top: -80px;
+
+
+transform: rotate(15deg);
+
+object-fit: cover;
+
+}
+.languages-grid-7 .language-image img{
+  position: absolute;
+width: 325.09px;
+height: 325.09px;
+left: 140px;
+top: -30px;
+
+
+transform: rotate(-15deg);
+
+object-fit: cover;
+
+}
+.languages-grid-8 .language-image img{
+  position: absolute;
+width: 325.09px;
+height: 325.09px;
+left: 140px;
+top: -50px;
+
+
+transform: rotate(-15deg);
+
+object-fit: cover;
+
+}
+.language-text{
+  position: absolute;
+  width: 64px;
+  height: 39px;
+  left: 40px;
+  top: 30px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  letter-spacing: -4%;
+  color: #ffffff;
+}
+
 
 .languages-grid-1.show,
 .languages-grid-2.show,

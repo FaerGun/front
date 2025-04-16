@@ -117,9 +117,9 @@ const Onboarding1 = () => {
           </svg>
         </div>
         <div className={`onboarding-content ${showElements ? 'show' : ''}`}>
-          <h1 className={showElements ? 'show' : ''}>Выберите направление обучения</h1>
+          <h1 className={showElements ? 'show' : ''}>Выберите направления</h1>
           <div className={`text-about-languages ${showElements ? 'show' : ''}`}>
-            <p>Выберите направления обучения, которые вас интересуют. Мы предложим вам курсы и ресурсы для каждого направления.</p>
+            <p>Чтобы подготовка дала максимальный результат, определите те направления, по которым планируете проходить собеседования.</p><p>Платформа Viewtrain подберёт для вас наиболее подходящие сценарии и вопросы — всё будет максимально приближено к реальной ситуации на интервью.</p>  <p>Вы можете выбрать одно направление или несколько — ориентируйтесь на свои цели и задачи..</p>
           </div>
           <div className={`directions-grid-1 ${showElements ? 'show' : ''} ${selectedDirections.includes(1) ? 'selected' : ''}`} onClick={() => toggleDirection(1)}></div>
           <div className={`directions-grid-2 ${showElements ? 'show' : ''} ${selectedDirections.includes(2) ? 'selected' : ''}`} onClick={() => toggleDirection(2)}></div>
@@ -160,16 +160,84 @@ const Onboarding1 = () => {
       <div className={`onboarding-content ${showElements ? 'show' : ''}`}>
         <h1 className={showElements ? 'show' : ''}>Выбор языка</h1>
         <div className={`text-about-languages ${showElements ? 'show' : ''}`}>
-          <p>Выберите языки программирования, которые вы хотите изучить. Мы предложим вам курсы и ресурсы для каждого языка.</p>
+          <p>Чтобы подготовка дала максимальный результат, определите те направления, по которым планируете проходить собеседования.
+<br /> Платформа Viewtrain подберёт для вас наиболее подходящие сценарии и вопросы — всё будет максимально приближено к реальной ситуации на интервью.
+<br /> Вы можете выбрать одно направление или несколько — ориентируйтесь на свои цели и задачи..</p>
         </div>
-        <div className={`languages-grid-1 ${showElements ? 'show' : ''} ${selectedLanguages.includes(1) ? 'selected' : ''}`} onClick={() => toggleLanguage(1)}></div>
-        <div className={`languages-grid-2 ${showElements ? 'show' : ''} ${selectedLanguages.includes(2) ? 'selected' : ''}`} onClick={() => toggleLanguage(2)}></div>
-        <div className={`languages-grid-3 ${showElements ? 'show' : ''} ${selectedLanguages.includes(3) ? 'selected' : ''}`} onClick={() => toggleLanguage(3)}></div>
-        <div className={`languages-grid-4 ${showElements ? 'show' : ''} ${selectedLanguages.includes(4) ? 'selected' : ''}`} onClick={() => toggleLanguage(4)}></div>
-        <div className={`languages-grid-5 ${showElements ? 'show' : ''} ${selectedLanguages.includes(5) ? 'selected' : ''}`} onClick={() => toggleLanguage(5)}></div>
-        <div className={`languages-grid-6 ${showElements ? 'show' : ''} ${selectedLanguages.includes(6) ? 'selected' : ''}`} onClick={() => toggleLanguage(6)}></div>
-        <div className={`languages-grid-7 ${showElements ? 'show' : ''} ${selectedLanguages.includes(7) ? 'selected' : ''}`} onClick={() => toggleLanguage(7)}></div>
-        <div className={`languages-grid-8 ${showElements ? 'show' : ''} ${selectedLanguages.includes(8) ? 'selected' : ''}`} onClick={() => toggleLanguage(8)}></div>
+        <div className={`languages-grid-1 ${showElements ? 'show' : ''} ${selectedLanguages.includes(1) ? 'selected' : ''}`} onClick={() => toggleLanguage(1)}>
+          <div className="language-image">
+            <img src="/src/assets/python-logo.png" />
+          </div>
+          <div className="language-text">
+            <h3>Python</h3>
+            
+          </div>
+        </div>
+        
+        <div className={`languages-grid-2 ${showElements ? 'show' : ''} ${selectedLanguages.includes(2) ? 'selected' : ''}`} onClick={() => toggleLanguage(2)}>
+          <div className="language-image">
+            <img src="/src/assets/javascript-logo.png" alt="JavaScript" />
+          </div>
+          <div className="language-text">
+            <h3>JavaScript</h3>
+            
+          </div>
+        </div>
+        <div className={`languages-grid-3 ${showElements ? 'show' : ''} ${selectedLanguages.includes(3) ? 'selected' : ''}`} onClick={() => toggleLanguage(3)}>
+          <div className="language-image">
+            <img src="/src/assets/cpp-logo.png" alt="C++" />
+          </div>
+          <div className="language-text">
+            <h3>C++</h3>
+            
+          </div>
+        </div>
+        <div className={`languages-grid-4 ${showElements ? 'show' : ''} ${selectedLanguages.includes(6) ? 'selected' : ''}`} onClick={() => toggleLanguage(6)}>
+          <div className="language-image">
+            <img src="/src/assets/csharp-logo.png" alt="C#" />
+          </div>
+          <div className="language-text">
+            <h3>C#</h3>
+            
+          </div>
+        </div>
+        
+        <div className={`languages-grid-5 ${showElements ? 'show' : ''} ${selectedLanguages.includes(5) ? 'selected' : ''}`} onClick={() => toggleLanguage(5)}>
+          <div className="language-image">
+            <img src="/src/assets/go-logo.png" alt="Go" />
+          </div>
+          <div className="language-text">
+            <h3>GoLang</h3>
+            
+          </div>
+        </div>
+        <div className={`languages-grid-6 ${showElements ? 'show' : ''} ${selectedLanguages.includes(4) ? 'selected' : ''}`} onClick={() => toggleLanguage(4)}>
+          <div className="language-image">
+            <img src="/src/assets/java-logo.png" alt="Java" />
+          </div>
+          <div className="language-text">
+            <h3>Java</h3>
+            
+          </div>
+        </div>
+        <div className={`languages-grid-7 ${showElements ? 'show' : ''} ${selectedLanguages.includes(7) ? 'selected' : ''}`} onClick={() => toggleLanguage(7)}>
+          <div className="language-image">
+            <img src="/src/assets/swift-logo.png" alt="Swift" />
+          </div>
+          <div className="language-text">
+            <h3>Swift</h3>
+            
+          </div>
+        </div>
+        <div className={`languages-grid-8 ${showElements ? 'show' : ''} ${selectedLanguages.includes(8) ? 'selected' : ''}`} onClick={() => toggleLanguage(8)}>
+          <div className="language-image">
+            <img src="/src/assets/dart-logo.png" alt="Dart" />
+          </div>
+          <div className="language-text">
+            <h3>Dart</h3>
+            
+          </div>
+        </div>
         <button 
           className={`next-button ${showElements ? 'show' : ''} ${selectedLanguages.length > 0 ? 'active' : ''}`}
           onClick={handleNext}
