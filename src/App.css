@@ -1015,7 +1015,7 @@ z-index: 1;
   transform: translateX(0);
 }
 
-.text-about-languages {
+.text-about-languages  {
   position: absolute;
   width: 738px;
   height: 468px;
@@ -1239,8 +1239,122 @@ object-fit: cover;
   letter-spacing: -4%;
   color: #ffffff;
 }
+.directions-grid-1 .directions-image img{
 
 
+position: absolute;
+width: 276.85px;
+height: 276.85px;
+left: 190px;
+top: -0px;
+
+
+transform: matrix(-0.97, -0.26, -0.26, 0.97, 0, 0);
+
+
+object-fit: cover;
+
+}
+.directions-grid-2 .directions-image img{
+
+
+  position: absolute;
+  width: 276.85px;
+  height: 276.85px;
+  left: 190px;
+  top: -40px;
+  
+  
+  transform: matrix(-0.97, -0.26, -0.26, 0.97, 0, 0);
+  
+  
+  object-fit: cover;
+  
+  }
+.directions-grid-3 .directions-image img{
+
+
+position: absolute;
+width: 276.85px;
+height: 276.85px;
+left: 190px;
+top: -20px;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+    
+object-fit: cover;
+    
+}
+.directions-grid-4 .directions-image img{
+
+
+  position: absolute;
+  width: 276.85px;
+  height: 276.85px;
+  left: 200px;
+  top: -15px;
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+      
+  object-fit: cover;
+transform: rotate(15deg);
+
+}
+.directions-grid-5 .directions-image img{
+
+
+position: absolute;
+width: 325.09px;
+height: 325.09px;
+left: 130px;
+top: -30px;
+object-fit: cover;
+transform: rotate(-30deg);
+
+        
+}
+.directions-grid-6 .directions-image img{
+
+
+position: absolute;
+width: 276.85px;
+height: 276.85px;
+left: 150px;
+top: -40px;       
+object-fit: cover;
+/* ChatGPT Image 5 апр. 2025 г., 18_25_20 */
+
+width: 325.09px;
+height: 325.09px;
+
+
+
+          
+}
+.directions-grid-7 .directions-image img{
+
+
+  position: absolute;
+  width: 325.09px;
+  height: 325.09px;
+  left: 140px;
+  top: -30px;
+ 
+            
+  object-fit: cover;
+            
+}
+.directions-grid-8 .directions-image img{
+
+
+  position: absolute;
+  width: 325.09px;
+  height: 325.09px;
+  left: 155px;
+  top: -45px;
+  object-fit: cover;
+transform: rotate(-15deg);
+
+  
+  }
 .languages-grid-1.show,
 .languages-grid-2.show,
 .languages-grid-3.show,

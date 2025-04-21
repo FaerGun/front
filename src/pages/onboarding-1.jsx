@@ -117,18 +117,75 @@ const Onboarding1 = () => {
           </svg>
         </div>
         <div className={`onboarding-content ${showElements ? 'show' : ''}`}>
-          <h1 className={showElements ? 'show' : ''}>Выберите направления</h1>
+          <h1 className={showElements ? 'show' : ''}>Выбор направления</h1>
           <div className={`text-about-languages ${showElements ? 'show' : ''}`}>
-            <p>Чтобы подготовка дала максимальный результат, определите те направления, по которым планируете проходить собеседования.</p><p>Платформа Viewtrain подберёт для вас наиболее подходящие сценарии и вопросы — всё будет максимально приближено к реальной ситуации на интервью.</p>  <p>Вы можете выбрать одно направление или несколько — ориентируйтесь на свои цели и задачи..</p>
+            <p>Чтобы подготовка дала максимальный результат, определите те направления, по которым планируете проходить собеседования.</p> <p>Платформа Viewtrain подберёт для вас наиболее подходящие сценарии и вопросы — всё будет максимально приближено к реальной ситуации на интервью.</p>  <p>Вы можете выбрать одно направление или несколько — ориентируйтесь на свои цели и задачи...</p>
           </div>
-          <div className={`directions-grid-1 ${showElements ? 'show' : ''} ${selectedDirections.includes(1) ? 'selected' : ''}`} onClick={() => toggleDirection(1)}></div>
-          <div className={`directions-grid-2 ${showElements ? 'show' : ''} ${selectedDirections.includes(2) ? 'selected' : ''}`} onClick={() => toggleDirection(2)}></div>
-          <div className={`directions-grid-3 ${showElements ? 'show' : ''} ${selectedDirections.includes(3) ? 'selected' : ''}`} onClick={() => toggleDirection(3)}></div>
-          <div className={`directions-grid-4 ${showElements ? 'show' : ''} ${selectedDirections.includes(4) ? 'selected' : ''}`} onClick={() => toggleDirection(4)}></div>
-          <div className={`directions-grid-5 ${showElements ? 'show' : ''} ${selectedDirections.includes(5) ? 'selected' : ''}`} onClick={() => toggleDirection(5)}></div>
-          <div className={`directions-grid-6 ${showElements ? 'show' : ''} ${selectedDirections.includes(6) ? 'selected' : ''}`} onClick={() => toggleDirection(6)}></div>
-          <div className={`directions-grid-7 ${showElements ? 'show' : ''} ${selectedDirections.includes(7) ? 'selected' : ''}`} onClick={() => toggleDirection(7)}></div>
-          <div className={`directions-grid-8 ${showElements ? 'show' : ''} ${selectedDirections.includes(8) ? 'selected' : ''}`} onClick={() => toggleDirection(8)}></div>
+          <div className={`directions-grid-1 ${showElements ? 'show' : ''} ${selectedDirections.includes(1) ? 'selected' : ''}`} onClick={() => toggleDirection(1)}>
+            <div className='directions-image'>
+              <img src='/src/assets/frontend.png'/>
+            </div>
+            <div className="directions-text">
+              <h3>Frontend</h3>
+              </div>
+          </div>
+          
+          <div className={`directions-grid-2 ${showElements ? 'show' : ''} ${selectedDirections.includes(2) ? 'selected' : ''}`} onClick={() => toggleDirection(2)}>
+          <div className='directions-image'>
+              <img src='/src/assets/mobile.png'/>
+            </div>
+            <div className="directions-text">
+              <h3>Mobile Development</h3>
+              </div>
+          </div>
+          <div className={`directions-grid-3 ${showElements ? 'show' : ''} ${selectedDirections.includes(3) ? 'selected' : ''}`} onClick={() => toggleDirection(3)}>
+          <div className='directions-image'>
+              <img src='/src/assets/backend.png'/>
+            </div>
+            <div className="directions-text">
+              <h3>Backend</h3>
+              </div>
+          </div>
+          <div className={`directions-grid-4 ${showElements ? 'show' : ''} ${selectedDirections.includes(4) ? 'selected' : ''}`} onClick={() => toggleDirection(4)}>
+          <div className='directions-image'>
+              <img src='/src/assets/Design.png'/>
+            </div>
+            <div className="directions-text">
+              <h3>UI/UX Design</h3>
+              </div>
+          </div>
+          <div className={`directions-grid-5 ${showElements ? 'show' : ''} ${selectedDirections.includes(5) ? 'selected' : ''}`} onClick={() => toggleDirection(5)}>
+          <div className='directions-image'>
+              <img src='/src/assets/DevOps.png'/>
+            </div>
+            <div className="directions-text">
+              <h3>DevOps</h3>
+              </div>
+          </div>
+          <div className={`directions-grid-6 ${showElements ? 'show' : ''} ${selectedDirections.includes(6) ? 'selected' : ''}`} onClick={() => toggleDirection(6)}>
+          <div className='directions-image'>
+              <img src='/src/assets/QA.png'/>
+            </div>
+            <div className="directions-text">
+              <h3>QA</h3>
+              </div>
+          </div>
+          <div className={`directions-grid-7 ${showElements ? 'show' : ''} ${selectedDirections.includes(7) ? 'selected' : ''}`} onClick={() => toggleDirection(7)}>
+          <div className='directions-image'>
+              <img src='/src/assets/Data.png'/>
+            </div>
+            <div className="directions-text">
+              <h3>Data Science</h3>
+              </div>
+          </div>
+          <div className={`directions-grid-8 ${showElements ? 'show' : ''} ${selectedDirections.includes(8) ? 'selected' : ''}`} onClick={() => toggleDirection(8)}>
+          <div className='directions-image'>
+              <img src='/src/assets/machine.png'/>
+            </div>
+            <div className="directions-text">
+              <h3>Machine Learning</h3>
+              </div>
+          </div>
           <button 
             className={`next-button ${showElements ? 'show' : ''} ${selectedDirections.length > 0 ? 'active' : ''}`}
             onClick={handleFinalNext}
