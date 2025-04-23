@@ -198,7 +198,7 @@ const ChatInterview = () => {
   };
 
   const handleDashboardClick = () => {
-    navigate('/');
+    navigate('/statistics');
   };
 
   const handleRestart = async () => {

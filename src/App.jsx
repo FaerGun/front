@@ -181,6 +181,12 @@ function App() {
       }
     };
 
+    const handleKeyPress = (e) => {
+      if (e.key === 'Enter' && !isChecking) {
+        handleNextButtonClick();
+      }
+    };
+
     return (
       <>
         <h1>Тренируйся.<br/>Анализируй.<br/>Побеждай!</h1>
@@ -197,6 +203,7 @@ function App() {
               onChange={handleEmailChange}
               placeholder="Электронная почта"
               disabled={isChecking}
+              onKeyPress={handleKeyPress}
             />
           </div>
           <div 
@@ -238,6 +245,7 @@ function App() {
     };
 
     const handleKeyPress = (e) => {
+      
       if (e.key === 'Enter' && isFormValid) {
         handleRegisterClick(formData);
       }

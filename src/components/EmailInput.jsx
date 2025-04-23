@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const EmailInput = ({ value, onChange, placeholder = "Введите email" }) => {
+const EmailInput = ({ value, onChange, placeholder = "Введите email", onKeyPress, disabled }) => {
   const [error, setError] = useState('');
 
   const validateEmail = (email) => {
@@ -36,7 +36,9 @@ const EmailInput = ({ value, onChange, placeholder = "Введите email" }) =
         type="email"
         value={value}
         onChange={handleChange}
+        onKeyPress={onKeyPress}
         placeholder={placeholder}
+        disabled={disabled}
         className={`email-input ${error ? 'error' : ''}`}
       />
       {error && <div className="input-error">{error}</div>}

@@ -1261,7 +1261,7 @@ object-fit: cover;
   position: absolute;
   width: 276.85px;
   height: 276.85px;
-  left: 190px;
+  left: 210px;
   top: -40px;
   
   
@@ -1355,6 +1355,25 @@ transform: rotate(-15deg);
 
   
   }
+.directions-text{
+  left: 30px;
+  top: 30px;
+
+position: absolute;
+width: 132px;
+height: 37.1px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 32px;
+line-height: 39px;
+letter-spacing: -0.04em;
+
+color: #ffffff;
+
+
+}
 .languages-grid-1.show,
 .languages-grid-2.show,
 .languages-grid-3.show,
