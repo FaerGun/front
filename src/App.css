@@ -1970,6 +1970,8 @@ height: 40px;
 left: 1730px;
 top: 23px;
 z-index: 2;
+cursor: pointer;
+  transition: all 0.3s ease;
 }
 .chat svg {
   width: 100%;
