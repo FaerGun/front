@@ -1590,27 +1590,86 @@ body.chat-open {
 }
 
 .next-button {
-  position: absolute;
-  width: 890px;
-  height: 83px;
-  top: 860px;
-  left: 970px;
-  border-radius: 30px;
-  padding-top: 20px;
-  padding-right: 197px;
-  padding-bottom: 20px;
-  padding-left: 197px;
-  gap: 10px;
-  background-color: #7A7A7A;
-  border: none;
-  cursor: pointer;
+position: absolute;
+width: 435px;
+height: 79px;
+top: 860px;
+left: 1425px;
+gap: 10px;
+border-radius: 30px;
+padding-top: 20px;
+padding-right: 197px;
+padding-bottom: 20px;
+padding-left: 170px;
+background-color: #7A7A7A;
+border: none;
+cursor: pointer;
 }
 
 .next-button.active {
   background: #B3DB32;
 }
 
+.next-button-directions{
+  position: absolute;
+width: 890px;
+height: 79px;
+top: 860px;
+left: 970px;
+gap: 10px;
+border-radius: 30px;
+padding-top: 20px;
+padding-right: 197px;
+padding-bottom: 20px;
+padding-left: 170px;
+background-color: #7A7A7A;
+border: none;
+cursor: pointer;
+
+}
+.next-button-directions span{
+  width: 96px;
+  height: 39px;
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: -4%;
+  color: #000000;
+}
+.next-button-directions.active {
+  background: #B3DB32;
+}
+
 .next-button span {
+  width: 96px;
+  height: 39px;
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: -4%;
+  color: #000000;
+}
+
+.back-button {
+  position: absolute;
+  width: 435px;
+  height: 79px;
+  top: 860px;
+  left: 970px;
+  gap: 10px;
+  border-radius: 30px;
+  padding-top: 20px;
+  padding-right: 197px;
+  padding-bottom: 20px;
+  padding-left: 170px;
+  background-color: #7A7A7A;
+  border: none;
+  cursor: pointer;
+}
+
+.back-button span {
   width: 96px;
   height: 39px;
   font-family: 'Inter';
