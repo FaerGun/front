@@ -236,22 +236,44 @@ const Statistics = () => {
             </div>
             
         <div className="stats-card2">
-              <h2>Стата</h2>
-              <h3>по темам которые хуевые</h3>
-              <div className="topics-list">
-                <div className="topic-item">
-                  <span className="topic-name">Алгоритмы</span>
-                  <span className="topic-score">45%</span>
-                </div>
-                <div className="topic-item">
-                  <span className="topic-name">TypeScript</span>
-                  <span className="topic-score">52%</span>
-                </div>
-                <div className="topic-item">
-                  <span className="topic-name">SQL</span>
-                  <span className="topic-score">58%</span>
-                </div>
-              </div>
+          <div className='graphik'><svg width="314" height="271" viewBox="0 0 314 271" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect y="171" width="50" height="100" rx="10" fill="#B3DB32"/>
+<rect x="66" y="140" width="50" height="131" rx="10" fill="#DB32B3"/>
+<rect x="132" y="119" width="50" height="152" rx="10" fill="#DB32B3"/>
+<rect x="198" y="24" width="50" height="247" rx="10" fill="#DB32B3"/>
+<rect x="264" width="50" height="271" rx="10" fill="#DB32B3"/>
+</svg>
+</div>
+        <div className="topic1">
+  <h3>Самые провальные темы собеседований</h3>
+  <div className="best-topic">
+    <span className="best-topic-label">ХУДШАЯ ТЕМА — 0.42%</span>
+    <span className="best-topic-title">Что такое Solid?</span>
+  </div>
+  <div className="topics-list">
+    <div className="topic-row">
+      <span className="topic-color"></span>
+      <span className="topic-percentage">91.2%</span>
+      <span className="topic-description">«Weak» и «Unowned» в чем разница</span>
+    </div>
+    <div className="topic-row">
+      <span className="topic-color"></span>
+      <span className="topic-percentage">56.2%</span>
+      <span className="topic-description">Что такое reference types</span>
+    </div>
+    <div className="topic-row">
+      <span className="topic-color"></span>
+      <span className="topic-percentage">48.4%</span>
+      <span className="topic-description">Как устроена память</span>
+    </div>
+    <div className="topic-row">
+      <span className="topic-color"></span>
+      <span className="topic-percentage">36.8%</span>
+      <span className="topic-description">Чем отличаются структуры и классы</span>
+    </div>
+  </div>
+</div>
+              
             </div>
           </div>
         </div>

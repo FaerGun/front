@@ -132,12 +132,12 @@ left:80px;
 /* Rectangle 16 */
 
 position: absolute;
-width: 910px;
-height: 457px;
-left: 920px;
-top: 480px;
+width: 890px;
+height: 435px;
+left: 925px;
+top: 470px;
 
-background: #D9D9D9;
+background: #ffffff;
 border-radius: 30px;
 
 
@@ -737,4 +737,16 @@ flex: none;
 order: 1;
 flex-grow: 0;
 
+}
+.topic2 h3 {
+  width: 346px;
+  height: 58px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 121%;
+  letter-spacing: -0.04em;
+  color: #000000;
+  margin: 0;
 }
