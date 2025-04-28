@@ -86,12 +86,12 @@ color: #000000;
 /* Rectangle 17 */
 
 position: absolute;
-width: 910px;
-height: 457px;
-left: 920px;
-top: 10px;
+width: 890px;
+height: 435px;
+left: 925px;
+top: 20px;
 
-background: #D9D9D9;
+background: #ffffff;
 border-radius: 30px;
 
 font-family: 'Inter';
@@ -102,6 +102,31 @@ line-height: 121%;
 letter-spacing: -0.04em;
 
 color: #000000;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+justify-content: flex-start;
+padding: 32px;
+box-sizing: border-box;
+}
+.graphik{
+  /* Bar Chart */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-end;
+padding: 0px;
+gap: 16px;
+
+position: absolute;
+width: 314px;
+height: 271px;
+
+top: 100px;
+left:80px;
+
+
 }
 .stats-card2{
 /* Rectangle 16 */
@@ -499,4 +524,217 @@ flex-grow: 0;
   align-items: center;
   justify-content: center;
   border: 4px;
+}
+
+.topic1 {
+/* Topics Container */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 25px;
+
+position: absolute;
+width: 346px;
+height: 271px;
+left: 450px;
+top: 100px;
+
+
+  
+}
+
+.topic1 h3 {
+  width: 346px;
+  height: 58px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 121%;
+  letter-spacing: -0.04em;
+  color: #000000;
+  margin: 0;
+}
+
+.best-topic {
+
+/* Topic Item */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 273px;
+height: 63px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+}
+
+.best-topic-label {
+/* Topic Label */
+
+
+height: 19px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 121.43%;
+/* or 19px */
+letter-spacing: -0.04em;
+
+color: #B3DB32;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+
+}
+
+.best-topic-title {
+  /* Topic Name */
+
+width: 273px;
+height: 44px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 36px;
+line-height: 121.43%;
+/* identical to box height, or 44px */
+letter-spacing: -0.04em;
+
+color: #B3DB32;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+}
+
+.topics-list {
+  /* Topic List */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 8px;
+
+width: 346px;
+height: 100px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+}
+
+.topic-row {
+  /* Topic Row */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 7px;
+
+width: 346px;
+height: 19px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+}
+
+.topic-percentage-container {
+  /* Topic Percentage Container */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 5px;
+
+width: 63px;
+height: 19px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+}
+
+.topic-color {
+  width: 15px;
+  height: 15px;
+  background: #DB32B3;
+  border-radius: 5px;
+}
+
+.topic-percentage {
+  width: 43px;
+  height: 19px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 121.43%;
+  letter-spacing: -0.04em;
+  color: #DB32B3;
+}
+
+.topic-description {
+  /* Topic Description */
+
+width: 276px;
+height: 19px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 121.43%;
+/* or 19px */
+letter-spacing: -0.04em;
+
+color: #000000;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
 }
