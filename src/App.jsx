@@ -2,6 +2,8 @@ import { useState, useRef, useCallback, useEffect, memo } from 'react'
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom'
 import './App.css'
 import photo from './assets/photo.png'
+import photo1 from './assets/photo-1.png'
+import photo2 from './assets/photo-2.png'
 import Onboarding1 from './pages/onboarding-1'
 import ChatInterview from './pages/ChatInterview'
 import Statistics from './pages/Statistics'
@@ -393,8 +395,8 @@ function App() {
         <div className="content-wrapper">
           <h2>УСПЕШНАЯ РЕГИСТРАЦИЯ</h2>
           <p>Добро пожаловать<br/>на viewtrain, {userName}!</p>
-          <div className='photo-1'><img src="src/assets/photo-1.png"></img></div>
-          <div className='photo-2'><img src="src/assets/photo-2.png"/></div>
+          <div className='photo-1'><img src={photo1} alt="Фото 1" /></div>
+          <div className='photo-2'><img src={photo2} alt="Фото 2" /></div>
           <div className="buttons-container">
             <button className="primary-button" onClick={() => {
               navigate('/onboarding-1');

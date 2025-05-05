@@ -699,7 +699,7 @@ flex-grow: 0;
   letter-spacing: -0.04em;
   color: #000000;
 }
-.photo-2 img{
+.photo-2 svg{
 position: fixed;
 width: 424.65px;
 height: 424.65px;
@@ -712,7 +712,7 @@ mask-image: linear-gradient(to left, rgb(255, 255, 255), transparent);
 -webkit-mask-image: linear-gradient(to left, rgb(255, 255, 255), transparent);
 
 }
-.photo-1 img{
+.photo-1 svg{
 /* ChatGPT Image 5 апр. 2025 г., 19_06_42 1 */
 
 position: absolute;

@@ -3,6 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { languagesApi } from '../api/languages';
 import '../App.css';
 import Chat from '../components/Chat';
+import frontendImg from '../assets/frontend.png'
+import mobileImg from '../assets/mobile.png'
+import backendImg from '../assets/backend.png'
+import designImg from '../assets/Design.png'
+import devopsImg from '../assets/DevOps.png'
+import qaImg from '../assets/QA.png'
+import dataImg from '../assets/Data.png'
+import machineImg from '../assets/machine.png'
 
 const Onboarding1 = () => {
   const navigate = useNavigate();
@@ -132,7 +140,7 @@ const Onboarding1 = () => {
           </div>
           <div className={`directions-grid-1 ${showElements ? 'show' : ''} ${selectedDirections.includes(1) ? 'selected' : ''}`} onClick={() => toggleDirection(1)}>
             <div className='directions-image'>
-              <img src='/src/assets/frontend.png'/>
+              <img src={frontendImg} alt="Frontend"/>
             </div>
             <div className="directions-text">
               <h3>Frontend</h3>
@@ -141,7 +149,7 @@ const Onboarding1 = () => {
           
           <div className={`directions-grid-2 ${showElements ? 'show' : ''} ${selectedDirections.includes(2) ? 'selected' : ''}`} onClick={() => toggleDirection(2)}>
           <div className='directions-image'>
-              <img src='/src/assets/mobile.png'/>
+              <img src={mobileImg} alt="Mobile Development"/>
             </div>
             <div className="directions-text">
               <h3>Mobile Development</h3>
@@ -149,7 +157,7 @@ const Onboarding1 = () => {
           </div>
           <div className={`directions-grid-3 ${showElements ? 'show' : ''} ${selectedDirections.includes(3) ? 'selected' : ''}`} onClick={() => toggleDirection(3)}>
           <div className='directions-image'>
-              <img src='/src/assets/backend.png'/>
+              <img src={backendImg} alt="Backend"/>
             </div>
             <div className="directions-text">
               <h3>Backend</h3>
@@ -157,7 +165,7 @@ const Onboarding1 = () => {
           </div>
           <div className={`directions-grid-4 ${showElements ? 'show' : ''} ${selectedDirections.includes(4) ? 'selected' : ''}`} onClick={() => toggleDirection(4)}>
           <div className='directions-image'>
-              <img src='/src/assets/Design.png'/>
+              <img src={designImg} alt="UI/UX Design"/>
             </div>
             <div className="directions-text">
               <h3>UI/UX Design</h3>
@@ -165,7 +173,7 @@ const Onboarding1 = () => {
           </div>
           <div className={`directions-grid-5 ${showElements ? 'show' : ''} ${selectedDirections.includes(5) ? 'selected' : ''}`} onClick={() => toggleDirection(5)}>
           <div className='directions-image'>
-              <img src='/src/assets/DevOps.png'/>
+              <img src={devopsImg} alt="DevOps"/>
             </div>
             <div className="directions-text">
               <h3>DevOps</h3>
@@ -173,7 +181,7 @@ const Onboarding1 = () => {
           </div>
           <div className={`directions-grid-6 ${showElements ? 'show' : ''} ${selectedDirections.includes(6) ? 'selected' : ''}`} onClick={() => toggleDirection(6)}>
           <div className='directions-image'>
-              <img src='/src/assets/QA.png'/>
+              <img src={qaImg} alt="QA"/>
             </div>
             <div className="directions-text">
               <h3>QA</h3>
@@ -181,7 +189,7 @@ const Onboarding1 = () => {
           </div>
           <div className={`directions-grid-7 ${showElements ? 'show' : ''} ${selectedDirections.includes(7) ? 'selected' : ''}`} onClick={() => toggleDirection(7)}>
           <div className='directions-image'>
-              <img src='/src/assets/Data.png'/>
+              <img src={dataImg} alt="Data Science"/>
             </div>
             <div className="directions-text">
               <h3>Data Science</h3>
@@ -189,7 +197,7 @@ const Onboarding1 = () => {
           </div>
           <div className={`directions-grid-8 ${showElements ? 'show' : ''} ${selectedDirections.includes(8) ? 'selected' : ''}`} onClick={() => toggleDirection(8)}>
           <div className='directions-image'>
-              <img src='/src/assets/machine.png'/>
+              <img src={machineImg} alt="Machine Learning"/>
             </div>
             <div className="directions-text">
               <h3>Machine Learning</h3>
