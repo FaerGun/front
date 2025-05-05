@@ -201,13 +201,14 @@ const ChatInterview = () => {
     navigate('/statistics');
   };
   const handlequestionsClick = () => {
-    navigate('/statistics');
+    navigate('/questions');
   };
   const handleoptionsClick = () => {
     navigate('/statistics');
   };
   const handlelogoutClick = () => {
-    navigate('/statistics');
+    localStorage.removeItem('token');
+    navigate('/');
   };
   const handleRestart = async () => {
     setMessages([]);

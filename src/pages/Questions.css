@@ -1,0 +1,253 @@
+body {
+  background: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.questions-root {
+  position: relative;
+  width: 1920px;
+  min-height: 1080px;
+  margin: 0 auto;
+  background: #000;
+  font-family: 'Inter', Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.questions-header .logo{
+  position: absolute;
+  top:30px;
+  
+}
+.questions-header .dashboard{
+  position: absolute;
+  top:30px;
+  left: 520px;
+}
+.questions-header .chat{
+  position: absolute;
+  top:30px;
+  left: 630px;
+}
+.questions-header .questions{
+  position: absolute;
+  top:30px;
+  left: 785px;
+}
+.questions-header .questions{
+  position: absolute;
+  top:30px;
+  left: 785px;
+}
+.questions-header .options{
+  position: absolute;
+  top:30px;
+  left: 915px;
+}
+
+.questions-header .profile{
+  position: absolute;
+  top:30px;
+  right: 10px;
+}
+
+
+ 
+
+
+.questions-main {
+  position: relative;
+  width: 1840px;
+  height: 929px;
+  left: 50%;
+  top: 1px;
+  transform: translateX(-50%);
+  background: #EEEEEE;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  box-sizing: border-box;
+}
+
+.questions-sidebar {
+  position: relative;
+  width: 435px;
+  height: 889px;
+  margin: 20px 0 20px 20px;
+  background: #fff;
+  border-radius: 30px;
+  box-sizing: border-box;
+  padding: 30px 30px 0 30px;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 20px;
+}
+.sidebar-desc {
+  font-size: 14px;
+  color: #181D27;
+  background: #EEEEEE;
+  border-radius: 20px;
+  padding: 16px 18px;
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+.sidebar-topics {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.sidebar-topic {
+  background: #EEEEEE;
+  border-radius: 30px;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+  cursor: pointer;
+  border: none;
+  transition: border 0.2s, background 0.2s;
+  border: 2px solid transparent;
+}
+.sidebar-topic.active {
+  border: 2px solid #B3DB32;
+  background: #fff;
+}
+
+.questions-list-section {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px 0 20px 20px;
+}
+.questions-list-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 59px;
+  gap: 20px 20px;
+  width: 1345px;
+  height: 889px;
+  background: #fff;
+  border-radius: 30px;
+  padding: 30px 40px;
+  box-sizing: border-box;
+  margin-right: 20px;
+}
+.question-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #EEEEEE;
+  border-radius: 30px;
+  padding: 20px 32px 20px 32px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+  letter-spacing: -0.04em;
+  height: 59px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: none;
+  transition: border 0.2s, background 0.2s;
+}
+.question-card.active {
+  background: #fff;
+  border: 2px solid #B3DB32;
+}
+.question-arrow {
+  font-size: 22px;
+  color: #181D27;
+  margin-left: 16px;
+  transform: rotate(180deg);
+}
+
+@media (max-width: 1920px) {
+  .questions-root {
+    width: 100vw;
+    min-width: 100vw;
+  }
+  .questions-header {
+    width: 100vw;
+  }
+  .questions-main {
+    width: 100vw;
+    min-width: 100vw;
+    left: 0;
+    transform: none;
+  }
+}
+
+.questions-header {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  box-sizing: border-box;
+  z-index: 10;
+  background: transparent;
+}
+
+.header-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex: 1;
+  position: static;
+  height: 38px;
+}
+
+.header-center .nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 24px;
+  height: 38px;
+  border-radius: 25px;
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  border: none;
+  background: #B3DB32;
+  color: #000;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+
+.header-center .nav-btn.active {
+  background: #fff;
+  color: #B3DB32;
+  border: 2px solid #B3DB32;
+}
+
+.header-center .nav-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 80px;
+}
+
+
+
+.profile-dot {
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 

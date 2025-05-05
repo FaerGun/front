@@ -44,7 +44,8 @@ const Statistics = () => {
     navigate('/statistics');
   };
   const handlelogoutClick = () => {
-    navigate('/statistics');
+    localStorage.removeItem('token');
+    navigate('/');
   };
   
 

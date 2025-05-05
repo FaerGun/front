@@ -5,6 +5,8 @@ import photo from './assets/photo.png'
 import Onboarding1 from './pages/onboarding-1'
 import ChatInterview from './pages/ChatInterview'
 import Statistics from './pages/Statistics'
+import Questions from './pages/Questions'
+
 import PhoneInput from './components/PhoneInput'
 import NameInput from './components/NameInput'
 import EmailInput from './components/EmailInput'
@@ -486,6 +488,7 @@ function AppWrapper() {
         <Route path="/onboarding-1" element={<Onboarding1 />} />
         <Route path="/chat-interview" element={<ChatInterview />} />
         <Route path="/statistics" element={<Statistics />} />
+        <Route path="/questions" element={<Questions />} />
       </Routes>
     </Router>
   );
