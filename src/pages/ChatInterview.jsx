@@ -16,7 +16,7 @@ const ChatInterview = () => {
   const [isInterviewStarted, setIsInterviewStarted] = useState(false);
   const [progress, setProgress] = useState(0);
   const [totalQuestions] = useState(10); // Предполагаемое количество вопросов
-  const [currentQuestionNumber, setCurrentQuestionNumber] = useState(0);
+  const [answeredQuestions, setAnsweredQuestions] = useState(0);
   const messagesEndRef = useRef(null);
 
   const navigate = useNavigate();
@@ -73,7 +73,7 @@ const ChatInterview = () => {
       setInterviewStatus('ongoing');
       setIsInterviewStarted(true);
       setProgress(0);
-      setCurrentQuestionNumber(0);
+      setAnsweredQuestions(0);
       setMessages([{
         text: '## Давайте начнем интервью\n\nЯ задам вам серию вопросов о backend-разработке. Отвечайте максимально подробно и точно.',
         isBot: true,
@@ -126,6 +126,20 @@ const ChatInterview = () => {
   const submitAnswer = async (answer) => {
     if (!currentQuestionId) return;
 
+    // Сначала обновляем прогресс и количество отвеченных вопросов
+    setAnsweredQuestions(prev => {
+      const newAnswered = prev + 1;
+      setProgress((newAnswered / totalQuestions) * 100);
+      return newAnswered;
+    });
+
+    // Добавляем ответ пользователя сразу
+    setMessages(prev => [...prev, {
+      text: answer,
+      isBot: false,
+      timestamp: new Date()
+    }]);
+
     try {
       const response = await fetch(`${API_BASE_URL}/interview/answer`, {
         method: 'POST',
@@ -146,13 +160,6 @@ const ChatInterview = () => {
       }
 
       const data = await response.json();
-      
-      // Добавляем только ответ пользователя
-      setMessages(prev => [...prev, {
-        text: answer,
-        isBot: false,
-        timestamp: new Date()
-      }]);
 
       // Добавляем оценку и обратную связь
       setMessages(prev => [...prev, {
@@ -170,8 +177,6 @@ const ChatInterview = () => {
           timestamp: new Date()
         }]);
       } else {
-        setCurrentQuestionNumber(prev => prev + 1);
-        setProgress((currentQuestionNumber + 1) * (100 / totalQuestions));
         await getNextQuestion();
       }
     } catch (error) {
@@ -214,7 +219,7 @@ const ChatInterview = () => {
     setMessages([]);
     setInputMessage('');
     setProgress(0);
-    setCurrentQuestionNumber(0);
+    setAnsweredQuestions(0);
     setInterviewStatus('not_started');
     setIsInterviewStarted(false);
     setCurrentQuestionId(null);
@@ -292,15 +297,16 @@ const ChatInterview = () => {
               <div className="chat-active-title">
                 Собеседование backend-разработчика
               </div>
-              <div className="chat-active-description">
-                {messages.length} сообщений
-              </div>
+              
               <div className="progress-wrapper">
                 <div className="progress-container">
                   <div 
                     className="progress-bar" 
                     style={{ width: `${progress}%` }}
                   />
+                </div>
+                <div className="progress-label">
+                  {Math.min(answeredQuestions + 1, totalQuestions)}/{totalQuestions} вопросов
                 </div>
                 <button 
                   className="progress-restart" 

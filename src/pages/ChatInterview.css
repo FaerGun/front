@@ -469,3 +469,49 @@
     opacity: 1;
     transform: translateY(0);
   }
+  .progress-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .progress-container {
+    width: 120px;
+    height: 8px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background: #B3DB32;
+    transition: width 0.3s;
+    border-radius: 4px;
+  }
+  
+  .progress-restart {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #888;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    padding: 0;
+  }
+  
+  .progress-restart:hover {
+    background: #e6f5c6;
+  }
+  .progress-label {
+    margin-left: 12px;
+    font-size: 14px;
+    color: #888;
+    min-width: 70px;
+  }
