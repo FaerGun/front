@@ -11,6 +11,14 @@ import devopsImg from '../assets/DevOps.png'
 import qaImg from '../assets/QA.png'
 import dataImg from '../assets/Data.png'
 import machineImg from '../assets/machine.png'
+import pythonLogo from '../assets/python-logo.png'
+import javascriptLogo from '../assets/javascript-logo.png'
+import cppLogo from '../assets/cpp-logo.png'
+import csharpLogo from '../assets/csharp-logo.png'
+import goLogo from '../assets/go-logo.png'
+import javaLogo from '../assets/java-logo.png'
+import swiftLogo from '../assets/swift-logo.png'
+import dartLogo from '../assets/dart-logo.png'
 
 const Onboarding1 = () => {
   const navigate = useNavigate();
@@ -241,76 +249,73 @@ const Onboarding1 = () => {
           </div>
           <div className={`languages-grid-1 ${showElements ? 'show' : ''} ${selectedLanguages.includes(1) ? 'selected' : ''}`} onClick={() => toggleLanguage(1)}>
             <div className="language-image">
-              <img src="/src/assets/python-logo.png" />
+              <img src={pythonLogo} alt="Python" />
             </div>
             <div className="language-text">
               <h3>Python</h3>
-              
             </div>
           </div>
           
           <div className={`languages-grid-2 ${showElements ? 'show' : ''} ${selectedLanguages.includes(2) ? 'selected' : ''}`} onClick={() => toggleLanguage(2)}>
             <div className="language-image">
-              <img src="/src/assets/javascript-logo.png" alt="JavaScript" />
+              <img src={javascriptLogo} alt="JavaScript" />
             </div>
             <div className="language-text">
               <h3>JavaScript</h3>
-              
             </div>
           </div>
+          
           <div className={`languages-grid-3 ${showElements ? 'show' : ''} ${selectedLanguages.includes(3) ? 'selected' : ''}`} onClick={() => toggleLanguage(3)}>
             <div className="language-image">
-              <img src="/src/assets/cpp-logo.png" alt="C++" />
+              <img src={cppLogo} alt="C++" />
             </div>
             <div className="language-text">
               <h3>C++</h3>
-              
             </div>
           </div>
+          
           <div className={`languages-grid-4 ${showElements ? 'show' : ''} ${selectedLanguages.includes(6) ? 'selected' : ''}`} onClick={() => toggleLanguage(6)}>
             <div className="language-image">
-              <img src="/src/assets/csharp-logo.png" alt="C#" />
+              <img src={csharpLogo} alt="C#" />
             </div>
             <div className="language-text">
               <h3>C#</h3>
-              
             </div>
           </div>
           
           <div className={`languages-grid-5 ${showElements ? 'show' : ''} ${selectedLanguages.includes(5) ? 'selected' : ''}`} onClick={() => toggleLanguage(5)}>
             <div className="language-image">
-              <img src="/src/assets/go-logo.png" alt="Go" />
+              <img src={goLogo} alt="Go" />
             </div>
             <div className="language-text">
               <h3>GoLang</h3>
-              
             </div>
           </div>
+          
           <div className={`languages-grid-6 ${showElements ? 'show' : ''} ${selectedLanguages.includes(4) ? 'selected' : ''}`} onClick={() => toggleLanguage(4)}>
             <div className="language-image">
-              <img src="/src/assets/java-logo.png" alt="Java" />
+              <img src={javaLogo} alt="Java" />
             </div>
             <div className="language-text">
               <h3>Java</h3>
-              
             </div>
           </div>
+          
           <div className={`languages-grid-7 ${showElements ? 'show' : ''} ${selectedLanguages.includes(7) ? 'selected' : ''}`} onClick={() => toggleLanguage(7)}>
             <div className="language-image">
-              <img src="/src/assets/swift-logo.png" alt="Swift" />
+              <img src={swiftLogo} alt="Swift" />
             </div>
             <div className="language-text">
               <h3>Swift</h3>
-              
             </div>
           </div>
+          
           <div className={`languages-grid-8 ${showElements ? 'show' : ''} ${selectedLanguages.includes(8) ? 'selected' : ''}`} onClick={() => toggleLanguage(8)}>
             <div className="language-image">
-              <img src="/src/assets/dart-logo.png" alt="Dart" />
+              <img src={dartLogo} alt="Dart" />
             </div>
             <div className="language-text">
               <h3>Dart</h3>
-              
             </div>
           </div>
           <button 
@@ -356,76 +361,73 @@ const Onboarding1 = () => {
         </div>
         <div className={`languages-grid-1 ${showElements ? 'show' : ''} ${selectedLanguages.includes(1) ? 'selected' : ''}`} onClick={() => toggleLanguage(1)}>
           <div className="language-image">
-            <img src="/src/assets/python-logo.png" />
+            <img src={pythonLogo} alt="Python" />
           </div>
           <div className="language-text">
             <h3>Python</h3>
-            
           </div>
         </div>
         
         <div className={`languages-grid-2 ${showElements ? 'show' : ''} ${selectedLanguages.includes(2) ? 'selected' : ''}`} onClick={() => toggleLanguage(2)}>
           <div className="language-image">
-            <img src="/src/assets/javascript-logo.png" alt="JavaScript" />
+            <img src={javascriptLogo} alt="JavaScript" />
           </div>
           <div className="language-text">
             <h3>JavaScript</h3>
-            
           </div>
         </div>
+        
         <div className={`languages-grid-3 ${showElements ? 'show' : ''} ${selectedLanguages.includes(3) ? 'selected' : ''}`} onClick={() => toggleLanguage(3)}>
           <div className="language-image">
-            <img src="/src/assets/cpp-logo.png" alt="C++" />
+            <img src={cppLogo} alt="C++" />
           </div>
           <div className="language-text">
             <h3>C++</h3>
-            
           </div>
         </div>
+        
         <div className={`languages-grid-4 ${showElements ? 'show' : ''} ${selectedLanguages.includes(6) ? 'selected' : ''}`} onClick={() => toggleLanguage(6)}>
           <div className="language-image">
-            <img src="/src/assets/csharp-logo.png" alt="C#" />
+            <img src={csharpLogo} alt="C#" />
           </div>
           <div className="language-text">
             <h3>C#</h3>
-            
           </div>
         </div>
         
         <div className={`languages-grid-5 ${showElements ? 'show' : ''} ${selectedLanguages.includes(5) ? 'selected' : ''}`} onClick={() => toggleLanguage(5)}>
           <div className="language-image">
-            <img src="/src/assets/go-logo.png" alt="Go" />
+            <img src={goLogo} alt="Go" />
           </div>
           <div className="language-text">
             <h3>GoLang</h3>
-            
           </div>
         </div>
+        
         <div className={`languages-grid-6 ${showElements ? 'show' : ''} ${selectedLanguages.includes(4) ? 'selected' : ''}`} onClick={() => toggleLanguage(4)}>
           <div className="language-image">
-            <img src="/src/assets/java-logo.png" alt="Java" />
+            <img src={javaLogo} alt="Java" />
           </div>
           <div className="language-text">
             <h3>Java</h3>
-            
           </div>
         </div>
+        
         <div className={`languages-grid-7 ${showElements ? 'show' : ''} ${selectedLanguages.includes(7) ? 'selected' : ''}`} onClick={() => toggleLanguage(7)}>
           <div className="language-image">
-            <img src="/src/assets/swift-logo.png" alt="Swift" />
+            <img src={swiftLogo} alt="Swift" />
           </div>
           <div className="language-text">
             <h3>Swift</h3>
-            
           </div>
         </div>
+        
         <div className={`languages-grid-8 ${showElements ? 'show' : ''} ${selectedLanguages.includes(8) ? 'selected' : ''}`} onClick={() => toggleLanguage(8)}>
           <div className="language-image">
-            <img src="/src/assets/dart-logo.png" alt="Dart" />
+            <img src={dartLogo} alt="Dart" />
           </div>
           <div className="language-text">
             <h3>Dart</h3>
-            
           </div>
         </div>
         <button 
