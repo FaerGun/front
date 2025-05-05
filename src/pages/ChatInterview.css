@@ -33,7 +33,7 @@
     position: absolute;
     
     height: 29px;
-    left: 545px;
+    left: 10px;
     top: 30px;
     font-family: 'Inter';
     font-style: normal;
@@ -50,25 +50,38 @@
     left: 70px;
   }
   
-  .chat-messages {
-    position: absolute;
-    width: 1270px;
-    height: 800px;
-    left: 515px;
-    top: 20px;
-    background: #FFFFFF;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    padding-top: 80px;
-    overflow-y: auto;
-    transition: all 0.3s ease;
+  .chat-conteiner {
+    /* Chat area background */
+
+position: absolute;
+width: 1320px;
+height: 930px;
+left: 500px;
+top: 20px;
+
+background: #FFFFFF;
+border-radius: 30px;
+
   }
   
-  .chat-messages.expanded {
-    left: 20px;
-    width: 1765px;
+  .chat-messages {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 30px;
+    box-shadow: none;
+    padding: 40px 0 40px 0;
+    gap: 32px;
+    overflow-y: auto;
   }
   
   .message {
@@ -116,7 +129,7 @@
     position: absolute;
     width: 1270px;
     height: 64px;
-    left: 515px;
+    left: 5px;
     bottom: 20px;
     background: #EEEEEE;
     border-radius: 30px;
