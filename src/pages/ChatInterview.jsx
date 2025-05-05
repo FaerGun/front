@@ -113,6 +113,11 @@ const ChatInterview = () => {
         isBot: true,
         timestamp: new Date()
       }]);
+      setAnsweredQuestions(prev => {
+        const newAnswered = prev + 1;
+        setProgress((newAnswered / totalQuestions) * 100);
+        return newAnswered;
+      });
     } catch (error) {
       console.error('Ошибка:', error);
       setMessages(prev => [...prev, {
@@ -125,13 +130,6 @@ const ChatInterview = () => {
 
   const submitAnswer = async (answer) => {
     if (!currentQuestionId) return;
-
-    // Сначала обновляем прогресс и количество отвеченных вопросов
-    setAnsweredQuestions(prev => {
-      const newAnswered = prev + 1;
-      setProgress((newAnswered / totalQuestions) * 100);
-      return newAnswered;
-    });
 
     // Добавляем ответ пользователя сразу
     setMessages(prev => [...prev, {
@@ -306,7 +304,7 @@ const ChatInterview = () => {
                   />
                 </div>
                 <div className="progress-label">
-                  {Math.min(answeredQuestions + 1, totalQuestions)}/{totalQuestions} вопросов
+                  {answeredQuestions}/{totalQuestions} вопросов
                 </div>
                 <button 
                   className="progress-restart" 
