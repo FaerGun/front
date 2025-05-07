@@ -88,11 +88,18 @@ body {
   flex-direction: column;
 }
 
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
 .sidebar-title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
-  color: #000;
-  margin-bottom: 20px;
+  color: #181D27;
+  margin: 0;
 }
 
 .sidebar-desc {
@@ -103,6 +110,7 @@ body {
   padding: 16px 18px;
   margin-bottom: 24px;
   font-weight: 400;
+  margin-top: 5px;
 }
 
 .sidebar-topics {
@@ -339,6 +347,71 @@ body {
   display: inline-block;
   vertical-align: middle;
   margin: 0 4px;
+}
+
+.sidebar-search {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  height: 40px;
+}
+
+.search-container {
+  max-height: 0;
+  opacity: 0;
+  margin-bottom: 0;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.search-container[style*="visible"] {
+  max-height: 40px;
+  opacity: 1;
+  margin-bottom: 15px;
+}
+
+.sidebar-search-input {
+  width: 100%;
+  height: 40px;
+  padding: 0 15px;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  background: white;
+  color: #000000;
+}
+
+.sidebar-search-input::placeholder {
+  color: #999999;
+}
+
+.sidebar-search-btn {
+  width: 25px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-search-btn:hover {
+  transform: scale(1.1);
+}
+
+.sidebar-search-btn svg {
+  width: 25px;
+  height: 25px;
+}
+
+.sidebar-search-btn svg path {
+  fill: #000000;
+  stroke: #000000;
+  stroke-width: 0.5px;
 }
 
 @media (max-width: 1920px) {
