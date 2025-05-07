@@ -80,6 +80,16 @@ const Questions = () => {
     setQuestions(topicQuestions[topicId]);
   };
 
+  const handleQuestionClick = (questionId) => {
+    console.log('Clicked question:', questionId);
+    setQuestions(prevQuestions => 
+      prevQuestions.map(question => ({
+        ...question,
+        active: question.id === questionId
+      }))
+    );
+  };
+
   const handleChatClick = () => {
     navigate('/chat-interview');
   };
@@ -185,8 +195,12 @@ const Questions = () => {
         {/* Вопросы */}
         <section className="questions-list-section">
           <div className="questions-list-grid">
-            {questions.map((q, idx) => (
-              <div key={q.id} className={`question-card${q.active && idx === 0 ? ' active' : ''}`}>
+            {questions.map((q) => (
+              <div 
+                key={q.id} 
+                className={`question-card${q.active ? ' active' : ''}`}
+                onClick={() => handleQuestionClick(q.id)}
+              >
                 {q.text}
                 <span className="question-arrow">❮</span>
               </div>
