@@ -2,17 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Questions.css';
 
-
-const topics = [
-  { id: 1, name: 'Активная тема', active: true },
-  { id: 2, name: 'Неактивная тема', active: false },
-  { id: 3, name: 'Неактивная тема', active: false },
-  { id: 4, name: 'Неактивная тема', active: false },
-  { id: 5, name: 'Неактивная тема', active: false },
-  { id: 6, name: 'Неактивная тема', active: false },
-];
-
-const questions = [
+const initialQuestions = [
   { id: 1, text: 'Чем отличается CMD от ENTRYPOINT в DockerFile', active: true },
   { id: 2, text: 'Неактивный вопрос', active: false },
   { id: 3, text: 'Неактивный вопрос', active: false },
@@ -27,10 +17,69 @@ const questions = [
   { id: 12, text: 'Неактивный вопрос', active: false },
 ];
 
+const topicQuestions = {
+  1: [
+    { id: 1, text: 'Чем отличается CMD от ENTRYPOINT в DockerFile', active: true },
+    { id: 2, text: 'Что такое Docker контейнер?', active: false },
+    { id: 3, text: 'Как работает Docker Volume?', active: false },
+    { id: 4, text: 'Что такое Docker Compose?', active: false },
+  ],
+  2: [
+    { id: 1, text: 'Что такое замыкание в JavaScript?', active: true },
+    { id: 2, text: 'Разница между let и const?', active: false },
+    { id: 3, text: 'Что такое прототипное наследование?', active: false },
+    { id: 4, text: 'Как работает Event Loop?', active: false },
+  ],
+  3: [
+    { id: 1, text: 'Что такое Virtual DOM?', active: true },
+    { id: 2, text: 'Жизненный цикл компонента React?', active: false },
+    { id: 3, text: 'Что такое React Hooks?', active: false },
+    { id: 4, text: 'Что такое Redux?', active: false },
+  ],
+  4: [
+    { id: 1, text: 'Основные принципы REST API?', active: true },
+    { id: 2, text: 'Что такое CORS?', active: false },
+    { id: 3, text: 'HTTP методы и их назначение?', active: false },
+    { id: 4, text: 'Что такое JWT?', active: false },
+  ],
+  5: [
+    { id: 1, text: 'Что такое CSS Grid?', active: true },
+    { id: 2, text: 'Flexbox vs Grid?', active: false },
+    { id: 3, text: 'Что такое медиа-запросы?', active: false },
+    { id: 4, text: 'CSS препроцессоры?', active: false },
+  ],
+  6: [
+    { id: 1, text: 'Основы TypeScript?', active: true },
+    { id: 2, text: 'Интерфейсы vs Типы?', active: false },
+    { id: 3, text: 'Дженерики в TypeScript?', active: false },
+    { id: 4, text: 'Декораторы в TypeScript?', active: false },
+  ],
+};
+
 const Questions = () => {
   const navigate = useNavigate();
   const [showElements, setShowElements] = useState(false);
-  const [activeTopic, setActiveTopic] = useState(1);
+  const [topicsList, setTopicsList] = useState([
+    { id: 1, name: 'Docker', active: true },
+    { id: 2, name: 'JavaScript Core', active: false },
+    { id: 3, name: 'React', active: false },
+    { id: 4, name: 'REST API', active: false },
+    { id: 5, name: 'CSS', active: false },
+    { id: 6, name: 'TypeScript', active: false },
+  ]);
+  const [questions, setQuestions] = useState(topicQuestions[1]);
+
+  const handleTopicClick = (topicId) => {
+    console.log('Clicked topic:', topicId);
+    setTopicsList(prevTopics => 
+      prevTopics.map(topic => ({
+        ...topic,
+        active: topic.id === topicId
+      }))
+    );
+    setQuestions(topicQuestions[topicId]);
+  };
+
   const handleChatClick = () => {
     navigate('/chat-interview');
   };
@@ -121,11 +170,11 @@ const Questions = () => {
             <b>Frontend → JavaScript</b>
           </div>
           <div className="sidebar-topics">
-            {topics.map(topic => (
+            {topicsList.map(topic => (
               <div
                 key={topic.id}
-                className={`sidebar-topic${topic.active || topic.id === activeTopic ? ' active' : ''}`}
-                onClick={() => setActiveTopic(topic.id)}
+                className={`sidebar-topic${topic.active ? ' active' : ''}`}
+                onClick={() => handleTopicClick(topic.id)}
               >
                 {topic.name}
               </div>
