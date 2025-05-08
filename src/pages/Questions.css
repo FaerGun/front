@@ -28,6 +28,7 @@ body {
 .questions-header .logo {
   position: absolute;
   top: 30px;
+  background-color: #ffffff00;
 }
 
 .questions-header .dashboard {

@@ -69,6 +69,7 @@
 
 .leftMenu {
   min-width: 300px;
+  width: 390px;
   background: #ffffff;
   border-radius: 24px;
   display: flex;
@@ -83,59 +84,84 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 0 24px;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .menuList button {
-  background: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 10px;
+  width: 100%;
+  height: 59px;
+  background: #EEEEEE;
   border: none;
-  text-align: left;
+  border-radius: 30px;
   font-size: 18px;
-  padding: 12px 16px;
-  border-radius: 16px;
   cursor: pointer;
   color: #222;
-  transition: background 0.2s;
+  transition: all 0.2s;
+  box-sizing: border-box;
+  outline: none;
 }
 
-.active {
-  background: #e6f51a;
-  color: #222;
-  font-weight: 600;
+.menuList button:focus {
+  outline: none;
+}
+
+.menuList button.active {
+  background: transparent;
+  border: 2px solid #B3DB32;
+  box-sizing: border-box;
 }
 
 .directionBtn {
+  position: absolute;
+  width: 350px;
+  height: 50px;
+  left: 20px;
+  top: 760px;
   margin: 32px 24px 12px 24px;
-  background: #e6f51a;
+  background: #B3DB32;
   color: #222;
   border: none;
-  border-radius: 16px;
+  border-radius: 30px;
   font-size: 18px;
   padding: 16px 0;
   cursor: pointer;
   font-weight: 500;
-  transition: background 0.2s;
+  transition: all 0.2s;
+  outline: none;
 }
 
-.directionBtn:hover {
-  background: #d0e200;
+.directionBtn:focus {
+  outline: none;
 }
 
 .exitBtn {
+  position: absolute;
+  width: 350px;
+  height: 50px;
+  left: 20px;
+  top: 850px;
   margin: 0 24px;
   background: #111;
   color: #fff;
   border: none;
-  border-radius: 16px;
+  border-radius: 30px;
   font-size: 18px;
   padding: 16px 0;
   cursor: pointer;
   font-weight: 500;
-  transition: background 0.2s;
+  transition: all 0.2s;
+  outline: none;
 }
 
-.exitBtn:hover {
-  background: #333;
+.exitBtn:focus {
+  outline: none;
 }
 
 .centerPanel {
@@ -151,13 +177,17 @@
 }
 
 .title {
-  font-size: 28px;
+  position: absolute;
+  top: 40px;
+  font-size: 32px;
   font-weight: 700;
   margin-bottom: 32px;
   color: #222;
 }
 
 .profileForm {
+  position: absolute;
+  top: 190px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -167,19 +197,26 @@
 
 .input {
   background: #ededed;
+  width: 558px;
   border: none;
-  border-radius: 12px;
+  border-radius: 30px;
   padding: 16px;
   font-size: 18px;
+  color: #000;
+}
+
+.input::placeholder {
   color: #888;
 }
 
 .saveBtn {
-  background: #e6f51a;
+  width: 120px;
+  height: 50px;
+  background: #B3DB32;
   color: #222;
   border: none;
-  border-radius: 16px;
-  font-size: 18px;
+  border-radius: 30px;
+  font-size: 16px;
   padding: 14px 0;
   font-weight: 600;
   cursor: pointer;
@@ -188,57 +225,61 @@
 }
 
 .saveBtn:hover {
-  background: #d0e200;
+  background: #B3DB32;
 }
 
 .rightPanel {
-  /* Background */
-
-box-sizing: border-box;
-
-position: absolute;
-width: 587px;
-height: 980px;
-left: 1270px;
-top: 100px;
-
-background: #000000;
-border: 3px solid #B3DB32;
-border-radius: 30px;
-
+  box-sizing: border-box;
+  position: absolute;
+  width: 587px;
+  height: 980px;
+  left: 1270px;
+  top: 100px;
+  background: #000000;
+  border: 3px solid #B3DB32;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .statsBox {
   color: #fff;
   width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   text-align: center;
   border: 2px solid #ffffff00;
   border-radius: 20px;
-  padding: 36px 16px 32px 16px;
-  margin: 0 auto;
+  padding: 36px 16px;
 }
 
 .statsText {
-  font-size: 20px;
-  margin-bottom: 18px;
+  font-size: 32px;
   color: #fff;
+  margin-top: -50px;
+  width: 100%;
 }
 
 .statsHours {
-  font-size: 64px;
+  font-size: 96px;
   font-weight: 800;
-  margin-bottom: 18px;
   color: #fff;
+  width: 100%;
+  padding: 20px 0;
 }
 
 .statsDesc {
   font-size: 20px;
   color: #fff;
-  margin-top: 12px;
+  line-height: 1.5;
 }
 
 .highlight {
-  color: #e6f51a;
+  color: #B3DB32;
   font-weight: 600;
 }
 
