@@ -37,8 +37,9 @@ const Statistics = () => {
   const handleChatClick = () => {
     navigate('/chat-interview');
   };
+  
   const handlequestionsClick = () => {
-    navigate('/statistics');
+    navigate('/questions');
   };
   const handleoptionsClick = () => {
     navigate('/statistics');

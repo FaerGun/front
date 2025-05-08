@@ -8,6 +8,7 @@ import Onboarding1 from './pages/onboarding-1'
 import ChatInterview from './pages/ChatInterview'
 import Statistics from './pages/Statistics'
 import Questions from './pages/Questions'
+import SettingsPage from './pages/SettingsPage'
 
 import PhoneInput from './components/PhoneInput'
 import NameInput from './components/NameInput'
@@ -491,6 +492,7 @@ function AppWrapper() {
         <Route path="/chat-interview" element={<ChatInterview />} />
         <Route path="/statistics" element={<Statistics />} />
         <Route path="/questions" element={<Questions />} />
+        <Route path="/options" element={<SettingsPage />} />
       </Routes>
     </Router>
   );
