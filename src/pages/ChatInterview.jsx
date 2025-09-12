@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 
 // Возвращаем оригинальное значение
-const API_BASE_URL = '/api/v1';
+const API_BASE_URL = '/api';
 
 const ChatInterview = () => {
   const [messages, setMessages] = useState([]);
